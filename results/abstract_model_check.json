@@ -1,0 +1,34 @@
+{
+  "checker_independence": "standard library only; imports no project analyzer, producer, checker, or test module",
+  "domains": [
+    {
+      "domain_size": 2,
+      "endpoints": 56,
+      "failures": [],
+      "partitions": 112,
+      "subset_replays": 368
+    },
+    {
+      "domain_size": 3,
+      "endpoints": 6480,
+      "failures": [],
+      "partitions": 36936,
+      "subset_replays": 191808
+    }
+  ],
+  "negative_controls": {
+    "hidden_visibility_breaks_structural_identification": true,
+    "overlapping_write_breaks_upward_closure": true,
+    "unstable_identity_breaks_coordinate_correspondence": true,
+    "value_only_incomparable_minima": true
+  },
+  "negative_controls_passed": true,
+  "scope": "bounded exhaustive validation of one-selector stratified frames; not a substitute for the paper proof",
+  "status": "PASS",
+  "totals": {
+    "atom_partitions": 37048,
+    "counterexamples": 0,
+    "endpoint_pairs": 6536,
+    "subset_replays": 192176
+  }
+}

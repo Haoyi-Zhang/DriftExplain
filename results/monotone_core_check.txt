@@ -1,0 +1,46 @@
+{
+  "counterexample_examples": [],
+  "negative_control": {
+    "a_sufficient": false,
+    "ab_sufficient": true,
+    "empty_sufficient": true,
+    "upward_closed": false
+  },
+  "per_dimension": [
+    {
+      "atoms": 0,
+      "predicates_examined": 2,
+      "upward_full_accepting": 1
+    },
+    {
+      "atoms": 1,
+      "predicates_examined": 4,
+      "upward_full_accepting": 2
+    },
+    {
+      "atoms": 2,
+      "predicates_examined": 16,
+      "upward_full_accepting": 5
+    },
+    {
+      "atoms": 3,
+      "predicates_examined": 256,
+      "upward_full_accepting": 19
+    },
+    {
+      "atoms": 4,
+      "predicates_examined": 65536,
+      "upward_full_accepting": 167
+    }
+  ],
+  "schema_version": 1,
+  "scope": "all Boolean predicates through 4 atoms; general theorem still relies on proof",
+  "status": "PASS",
+  "totals": {
+    "all_predicates_examined": 65814,
+    "counterexamples": 0,
+    "dimensions": 5,
+    "theorem_checks": 970,
+    "upward_predicates": 194
+  }
+}
