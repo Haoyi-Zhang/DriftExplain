@@ -12,7 +12,6 @@
     ]
   },
   "disagreements": [],
-  "schema_version": 1,
   "scope": "seeded finite differential and metamorphic checks; no fitted model, source parser, performance claim, or statistical generalization",
   "status": "PASS",
   "totals": {

@@ -125,7 +125,7 @@ def main() -> int:
         root_entries = sorted(path.name for path in project.iterdir())
         check(
             "project_root_entries",
-            root_entries == ["CURRENT-STATE.md", "artifact", "paper", "research-plan.md"],
+            root_entries == ["README.md", "artifact", "paper"],
             root_entries,
         )
         check("paper_sources_present", (paper / "main.tex").is_file() and (paper / "main.pdf").is_file(), "main.tex and main.pdf")
@@ -136,7 +136,7 @@ def main() -> int:
     all_paths = sorted(path for path in artifact.rglob("*") if path.is_file() or path.is_symlink())
     if project:
         all_paths += sorted(path for path in paper.rglob("*") if path.is_file() or path.is_symlink())
-        all_paths += [project / "CURRENT-STATE.md", project / "research-plan.md"]
+        all_paths += [project / "paper" / "provenance" / "CURRENT-STATE.md", project / "paper" / "provenance" / "research-plan.md"]
     symlinks = [str(path.relative_to(project or artifact)) for path in all_paths if path.is_symlink()]
     check("no_symlinks", not symlinks, symlinks)
     cache_residue = [
@@ -244,8 +244,43 @@ def main() -> int:
     monotone = results["monotone"].get("totals", {})
     generated = results["generated"].get("totals", {})
     check("abstract_check_scope", abstract.get("endpoint_pairs", 0) >= 6500 and abstract.get("subset_replays", 0) >= 190000, abstract)
-    check("abstract_negative_controls", results["abstract"].get("negative_controls_passed") is True, results["abstract"].get("negative_controls"))
+    abstract_config = results["abstract"].get("configuration", {})
+    check(
+        "abstract_domain_accounting",
+        abstract_config.get("selector_domain_sizes") == [2, 3]
+        and abstract_config.get("endpoint_pair_scope") == "ordered non-identical endpoint pairs"
+        and abstract.get("endpoint_pairs") == 6536
+        and abstract.get("atom_partitions") == 37048,
+        {"configuration": abstract_config, "totals": abstract},
+    )
+    abstract_controls = results["abstract"].get("negative_controls", {})
+    hidden_control = abstract_controls.get("hidden_visibility_breaks_structural_identification", {})
+    unstable_control = abstract_controls.get("unstable_identity_breaks_coordinate_correspondence", {})
+    check(
+        "abstract_negative_controls_executed",
+        results["abstract"].get("negative_controls_passed") is True
+        and hidden_control.get("empty_patch", {}).get("structural_equivalence_violated") is True
+        and hidden_control.get("restored_complete_evidence", {}).get("all_subsets_agree") is True
+        and unstable_control.get("unstable_positional_views", {}).get("failure_observed") is True
+        and unstable_control.get("restored_stable_identity", {}).get("positive_control_passed") is True,
+        abstract_controls,
+    )
     check("monotone_check_scope", monotone.get("all_predicates_examined", 0) >= 65000 and monotone.get("theorem_checks", 0) >= 900, monotone)
+    monotone_control = results["monotone"].get("negative_control", {})
+    overwrite_control = monotone_control.get("executed_overwrite_state_machine", {})
+    restored_monotone = monotone_control.get("restored_monotone_positive_control", {})
+    check(
+        "monotone_negative_control_executed",
+        monotone_control.get("passed") is True
+        and overwrite_control.get("upward_closed") is False
+        and overwrite_control.get("sufficient_set_intersection") == "{}"
+        and overwrite_control.get("deletion_core") == "{b}"
+        and overwrite_control.get("theorem_failure_observed") is True
+        and restored_monotone.get("upward_closed") is True
+        and restored_monotone.get("principal_filter") is True
+        and restored_monotone.get("positive_control_passed") is True,
+        monotone_control,
+    )
     check("generated_check_scope", generated.get("generated_endpoint_pairs", 0) >= 60 and generated.get("subset_replays", 0) >= 1000 and generated.get("certificate_checks", 0) >= 200, generated)
     check("generated_metamorphic_scope", generated.get("container_order_checks", 0) >= 200 and generated.get("bijective_renaming_checks", 0) >= 200, generated)
 
@@ -316,6 +351,60 @@ def main() -> int:
         "generated_differential_check.py",
     ):
         check(f"present_{re.sub(r'\W+', '_', relative).strip('_').lower()}", (artifact / relative).is_file(), relative)
+    verifier_source = read_text(artifact / "verify_artifact.py")
+    verifier_tests = read_text(artifact / "tests" / "test_verify_artifact.py") if (artifact / "tests" / "test_verify_artifact.py").is_file() else ""
+    check(
+        "fresh_output_verification_chain",
+        all(
+            token in verifier_source
+            for token in (
+                "regenerate_result",
+                "--output",
+                "generated_exists",
+                "fresh_result_comparisons",
+                "finite_check_totals_from_fresh_outputs",
+            )
+        ),
+        "deterministic checkers must write and parse fresh isolated outputs",
+    )
+    required_mutation_tests = (
+        "test_missing_fresh_output_is_fail",
+        "test_changed_frozen_field_is_fail",
+        "test_forbidden_format_conflict_is_fail",
+    )
+    check(
+        "verification_chain_mutation_tests",
+        all(name in verifier_tests for name in required_mutation_tests),
+        list(required_mutation_tests),
+    )
+    one_command_path = artifact / "results" / "one_command_verification.json"
+    try:
+        one_command = read_json(one_command_path)
+    except Exception as exc:  # pragma: no cover
+        one_command = {"status": "UNREADABLE", "error": str(exc)}
+    fresh_comparisons = one_command.get("fresh_result_comparisons", {})
+    required_fresh_results = {
+        "results/abstract_model_check.json",
+        "results/monotone_core_check.json",
+        "results/generated_differential_check.json",
+    }
+    check(
+        "one_command_fresh_outputs_recorded",
+        one_command.get("status") == "PASS"
+        and one_command.get("current_unit_tests") == len(test_methods)
+        and set(fresh_comparisons) == required_fresh_results
+        and all(
+            item.get("status") == "PASS"
+            and item.get("generated_exists") is True
+            and item.get("generated_parse_error") is None
+            and item.get("semantic_equal") is True
+            and item.get("byte_equal") is True
+            and not item.get("forbidden_generated_fields")
+            for item in fresh_comparisons.values()
+        ),
+        fresh_comparisons,
+    )
+
     assumptions = read_csv(artifact / "theorem_assumption_matrix.csv")
     check("theorem_assumption_matrix", len(assumptions) >= 10 and all(row.get("failure_if_removed") for row in assumptions), len(assumptions))
     claims = read_csv(artifact / "claim_evidence_ledger.csv")
@@ -475,6 +564,35 @@ def main() -> int:
             "review_boundary_regressions_present",
             all(name in test_source for name in required_boundary_tests),
             list(required_boundary_tests),
+        )
+
+        check(
+            "paper_tiny_domain_accounting",
+            all(
+                token in tex
+                for token in (
+                    r"fixes target \texttt{site} as present",
+                    r"27\times27\times3\times2\times2=8{,}748",
+                    "301 tiny",
+                    "all 64 directed cases",
+                    "$301+64=365$",
+                    "$2{,}302+1{,}753=4{,}055$",
+                )
+            ),
+            "tiny product and exact-small split stated explicitly",
+        )
+        check(
+            "paper_abstract_enumerator_accounting",
+            all(
+                token in tex
+                for token in (
+                    "selector domains of sizes two and three separately",
+                    "6,536 ordered non-identical endpoint pairs",
+                    "37,048 changed-coordinate partitions",
+                    "192,176 subset replays",
+                )
+            ),
+            "domains, non-identical pairs, partitions, and replays separated",
         )
 
         # Recorded evidence is stated with current counts.

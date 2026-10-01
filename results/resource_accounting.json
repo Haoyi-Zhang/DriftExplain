@@ -10,7 +10,7 @@
       "subset_replays": 192176
     },
     "campaign_effect": "none; the empirical campaign remains terminated over cap",
-    "classification": "artifact verification after an already-breached campaign cap",
+    "classification": "artifact verification after an already-breached campaign cap; includes fresh-output regeneration and verifier mutation tests",
     "generated_differential_check": {
       "bijective_renaming_checks": 240,
       "candidate_pairs": 240,
@@ -29,13 +29,13 @@
       "upward_full_accepting_predicates": 194
     },
     "unit_tests": {
-      "methods": 42,
-      "peak_rss_kib": 97964,
+      "methods": 46,
+      "peak_rss_kib": 98860,
       "record": "results/unit_tests.txt",
       "status": "PASS",
-      "system_cpu_seconds": 0.24,
-      "user_cpu_seconds": 4.2,
-      "wall_seconds": 3.29
+      "system_cpu_seconds": 0.57,
+      "user_cpu_seconds": 10.55,
+      "wall_seconds": 7.98
     }
   },
   "declared_campaign_obligation_cap": 800000,

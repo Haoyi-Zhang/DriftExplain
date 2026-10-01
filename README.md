@@ -45,15 +45,23 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 python verify_artifact.py
 
 The command copies the artifact to a temporary directory and runs:
 
-1. all 42 unit/regression tests;
+1. all 46 unit/regression tests;
 2. the independent stratified-frame enumerator;
 3. the independent monotone-predicate enumerator;
 4. the seeded differential and metamorphic checker; and
 5. the deterministic structural audit.
 
-It also checks that the three deterministic finite-check results match the
-shipped JSON files and that no bytecode/cache residue was created.  The original
-artifact directory is not modified except for the final verification report.
+For each deterministic finite checker, the verifier supplies an explicit
+`--output` path in a fresh sibling directory, requires the new file to exist,
+parses the new file, rejects forbidden result metadata, and then compares both
+its JSON value and exact bytes with the shipped frozen result. The static audit
+also writes to a fresh path and must pass; it is not byte-compared with the
+shipped project-mode audit because the one-command verifier audits the standalone
+artifact mode. Unit tests include three verifier mutations:
+a missing fresh output, a changed frozen field, and a format conflict must all
+produce `FAIL`.  No copied frozen JSON is accepted as evidence of regeneration.
+The original artifact directory is not modified except for the final verification
+report.
 
 ## Acceptance path and retained harnesses
 
@@ -74,13 +82,14 @@ historical campaign branch or reopen its terminated resource budget.
   producer or shared analysis module.
 - `abstract_model_check.py` — standard-library-only enumeration of bounded
   stratified frames, endpoint pairs, atom partitions, all change subsets, and
-  four premise-breaking controls.
+  four executed premise-breaking controls and their restored-premise
+  positive controls.
 - `monotone_core_check.py` — standard-library-only enumeration of every Boolean
   predicate on zero through four atoms.
 - `generated_differential_check.py` — deterministic generated endpoint pairs,
   producer/checker/exhaustive agreement, certificate checks, and container-order
   and bijective-renaming metamorphisms.
-- `tests/` — 42 current tests for finite semantics, support, certificates,
+- `tests/` — 46 current tests for finite semantics, support, certificates,
   incrementality, admission, independent checks, and generated cases.
 - `proofs/` — the abstract theorem, concrete instantiation, incremental theorem,
   checker relation, counterexamples, and conditional source-lifting statement.
@@ -94,10 +103,12 @@ historical campaign branch or reopen its terminated resource budget.
 
 ## Current finite results
 
-- Unit/regression suite: **42/42 passed**.
-- Stratified-frame enumeration: **6,536 endpoint pairs**, **37,048 atom
-  partitions**, and **192,176 subset replays**, with no theorem counterexample;
-  all four negative controls fail the expected premise.
+- Unit/regression suite: **46/46 passed**.
+- Stratified-frame enumeration: **two selector domains**, **6,536 ordered
+  non-identical endpoint pairs**, **37,048 atom partitions**, and **192,176
+  subset replays**, with no theorem counterexample; all four executed negative
+  controls expose the expected failure and their positive controls restore the
+  premise.
 - Monotone-predicate enumeration: **65,814 predicates**, including **194**
   upward-closed predicates accepting the full set and **970** checked theorem
   instances, with no counterexample.
@@ -109,6 +120,14 @@ historical campaign branch or reopen its terminated resource budget.
 These are finite defect-detection results, not a proof, an accuracy estimate, a
 source-level evaluation, or a statistical generalization claim.  The proofs are
 the basis of the theorem statements.
+
+The retained tiny comparison count has a fixed interpretation: target `site`
+is present; `x`, `y`, and `z` are three three-valued observations; the canonical
+names are `a`, `b`, and `guard`; ordinary aliases are singleton lists; and the
+product is `27 x 27 x 3 x 2 x 2 = 8,748`.  Target addition/deletion and alias
+reordering occur in directed/unit cases.  Full subset enumeration covers 301
+tiny samples and all 64 directed cases, for 365 exact-small minimum comparisons;
+the corresponding subset replays split as 2,302 tiny plus 1,753 directed.
 
 ## Retained predecessor evidence and resource boundary
 

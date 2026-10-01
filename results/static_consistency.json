@@ -48,16 +48,16 @@
     {
       "detail": {
         "errors": [],
-        "files": 19
+        "files": 20
       },
       "id": "python_ast",
       "status": "PASS"
     },
     {
       "detail": {
-        "count": 42,
+        "count": 46,
         "methods": [
-          "test_abstract_model_check.py:test_bounded_model_check_and_negative_controls",
+          "test_abstract_model_check.py:test_bounded_model_check_and_executed_negative_controls",
           "test_abstract_model_check.py:test_model_checker_has_no_project_imports",
           "test_admission.py:test_checker_diagnostic_matrix",
           "test_admission.py:test_extended_malformed_forms_are_rejected_by_both_implementations",
@@ -68,7 +68,7 @@
           "test_generated_differential.py:test_container_order_metamorphism",
           "test_generated_differential.py:test_generated_differential_has_no_disagreement",
           "test_generated_differential.py:test_generated_surface_is_nontrivial",
-          "test_monotone_core_check.py:test_all_monotone_predicates_through_four_atoms",
+          "test_monotone_core_check.py:test_all_monotone_predicates_and_executed_negative_control",
           "test_monotone_core_check.py:test_independent_imports",
           "test_public.py:test_public_pattern_matrix",
           "test_results.py:test_frozen_result_invariants",
@@ -98,7 +98,11 @@
           "test_support.py:test_only_final_aliases_require_observation_changes",
           "test_support.py:test_origin_only_support_with_unchanged_value",
           "test_support.py:test_target_absence_precedes_rule_and_normalizer_lookup",
-          "test_support.py:test_value_only_counterexample_has_two_alternative_minima"
+          "test_support.py:test_value_only_counterexample_has_two_alternative_minima",
+          "test_verify_artifact.py:test_changed_frozen_field_is_fail",
+          "test_verify_artifact.py:test_current_abstract_and_monotone_generators_write_fresh_matching_outputs",
+          "test_verify_artifact.py:test_forbidden_format_conflict_is_fail",
+          "test_verify_artifact.py:test_missing_fresh_output_is_fail"
         ]
       },
       "id": "current_test_inventory",
@@ -106,8 +110,8 @@
     },
     {
       "detail": {
-        "logged": 42,
-        "source_inventory": 42
+        "logged": 46,
+        "source_inventory": 46
       },
       "id": "current_unit_execution",
       "status": "PASS"
@@ -128,7 +132,8 @@
         "argparse",
         "itertools",
         "json",
-        "pathlib"
+        "pathlib",
+        "typing"
       ],
       "id": "abstract_model_check_import_boundary",
       "status": "PASS"
@@ -205,12 +210,168 @@
     },
     {
       "detail": {
-        "hidden_visibility_breaks_structural_identification": true,
-        "overlapping_write_breaks_upward_closure": true,
-        "unstable_identity_breaks_coordinate_correspondence": true,
-        "value_only_incomparable_minima": true
+        "configuration": {
+          "endpoint_pair_scope": "ordered non-identical endpoint pairs",
+          "selector_domain_sizes": [
+            2,
+            3
+          ]
+        },
+        "totals": {
+          "atom_partitions": 37048,
+          "counterexamples": 0,
+          "endpoint_pairs": 6536,
+          "subset_replays": 192176
+        }
       },
-      "id": "abstract_negative_controls",
+      "id": "abstract_domain_accounting",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "hidden_visibility_breaks_structural_identification": {
+          "empty_patch": {
+            "actual_sufficient": true,
+            "hidden_new_evidence": [
+              7
+            ],
+            "hidden_old_evidence": [
+              7
+            ],
+            "predicted_sufficient": false,
+            "structural_equivalence_violated": true
+          },
+          "new_state": [
+            1,
+            7,
+            7
+          ],
+          "old_state": [
+            0,
+            7,
+            7
+          ],
+          "passed": true,
+          "restored_complete_evidence": {
+            "all_subsets_agree": true,
+            "empty_patch_sufficient": false,
+            "new_evidence": [
+              1,
+              7
+            ],
+            "old_evidence": [
+              0,
+              7
+            ],
+            "support_patch_sufficient": true
+          },
+          "selector_atom_block": [
+            0
+          ],
+          "support": [
+            0
+          ]
+        },
+        "overlapping_write_breaks_upward_closure": {
+          "passed": true,
+          "restored_disjoint_endpoint_blocks": {
+            "evaluations": {
+              "a": false,
+              "a_b": true,
+              "b": false,
+              "empty": false
+            },
+            "upward_principal_filter_restored": true
+          },
+          "sequential_write_evaluations": {
+            "a": false,
+            "a_b": true,
+            "b": true,
+            "empty": true
+          },
+          "upward_closure_violation_observed": true
+        },
+        "unstable_identity_breaks_coordinate_correspondence": {
+          "new_keyed_state": [
+            [
+              "x",
+              2
+            ],
+            [
+              "y",
+              1
+            ]
+          ],
+          "old_keyed_state": [
+            [
+              "x",
+              1
+            ],
+            [
+              "y",
+              2
+            ]
+          ],
+          "passed": true,
+          "restored_stable_identity": {
+            "changed_identities": [
+              "x",
+              "y"
+            ],
+            "correspondence": {
+              "x": "x",
+              "y": "y"
+            },
+            "empty_patch_reaches_new": false,
+            "full_patch_reaches_new": true,
+            "positive_control_passed": true
+          },
+          "unstable_correspondence": {
+            "x": "y",
+            "y": "x"
+          },
+          "unstable_positional_views": {
+            "failure_observed": true,
+            "keyed_endpoints_differ": true,
+            "masked_changes": [],
+            "new": [
+              1,
+              2
+            ],
+            "old": [
+              1,
+              2
+            ]
+          }
+        },
+        "value_only_incomparable_minima": {
+          "executed_predicate_values": {
+            "a": true,
+            "a_b": true,
+            "b": true,
+            "empty": false
+          },
+          "incomparable_minimal_sufficient_sets": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ]
+          ],
+          "passed": true,
+          "restored_complete_evidence": {
+            "minimal_sufficient_sets": [
+              [
+                "a",
+                "b"
+              ]
+            ],
+            "unique_least_restored": true
+          }
+        }
+      },
+      "id": "abstract_negative_controls_executed",
       "status": "PASS"
     },
     {
@@ -222,6 +383,56 @@
         "upward_predicates": 194
       },
       "id": "monotone_check_scope",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "executed_overwrite_state_machine": {
+          "atom_order": [
+            "a writes 1",
+            "b writes 0"
+          ],
+          "deletion_core": "{b}",
+          "deletion_core_sufficient": true,
+          "minimal_sufficient_sets": [
+            "{}"
+          ],
+          "subset_results": {
+            "{a,b}": {
+              "final_state": 0,
+              "sufficient": true
+            },
+            "{a}": {
+              "final_state": 1,
+              "sufficient": false
+            },
+            "{b}": {
+              "final_state": 0,
+              "sufficient": true
+            },
+            "{}": {
+              "final_state": 0,
+              "sufficient": true
+            }
+          },
+          "sufficient_set_intersection": "{}",
+          "theorem_failure_observed": true,
+          "upward_closed": false
+        },
+        "passed": true,
+        "restored_monotone_positive_control": {
+          "deletion_core": "{a}",
+          "minimal_sufficient_sets": [
+            "{a}"
+          ],
+          "positive_control_passed": true,
+          "predicate": "a is selected",
+          "principal_filter": true,
+          "sufficient_set_intersection": "{a}",
+          "upward_closed": true
+        }
+      },
+      "id": "monotone_negative_control_executed",
       "status": "PASS"
     },
     {
@@ -359,6 +570,59 @@
       "status": "PASS"
     },
     {
+      "detail": "deterministic checkers must write and parse fresh isolated outputs",
+      "id": "fresh_output_verification_chain",
+      "status": "PASS"
+    },
+    {
+      "detail": [
+        "test_missing_fresh_output_is_fail",
+        "test_changed_frozen_field_is_fail",
+        "test_forbidden_format_conflict_is_fail"
+      ],
+      "id": "verification_chain_mutation_tests",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "results/abstract_model_check.json": {
+          "byte_equal": true,
+          "forbidden_frozen_fields": [],
+          "forbidden_generated_fields": [],
+          "frozen_exists": true,
+          "frozen_parse_error": null,
+          "generated_exists": true,
+          "generated_parse_error": null,
+          "semantic_equal": true,
+          "status": "PASS"
+        },
+        "results/generated_differential_check.json": {
+          "byte_equal": true,
+          "forbidden_frozen_fields": [],
+          "forbidden_generated_fields": [],
+          "frozen_exists": true,
+          "frozen_parse_error": null,
+          "generated_exists": true,
+          "generated_parse_error": null,
+          "semantic_equal": true,
+          "status": "PASS"
+        },
+        "results/monotone_core_check.json": {
+          "byte_equal": true,
+          "forbidden_frozen_fields": [],
+          "forbidden_generated_fields": [],
+          "frozen_exists": true,
+          "frozen_parse_error": null,
+          "generated_exists": true,
+          "generated_parse_error": null,
+          "semantic_equal": true,
+          "status": "PASS"
+        }
+      },
+      "id": "one_command_fresh_outputs_recorded",
+      "status": "PASS"
+    },
+    {
       "detail": 10,
       "id": "theorem_assumption_matrix",
       "status": "PASS"
@@ -393,8 +657,8 @@
     },
     {
       "detail": {
-        "current": 42,
-        "recorded": 42,
+        "current": 46,
+        "recorded": 46,
         "status": "PASS"
       },
       "id": "resource_unit_record_matches_current",
@@ -540,8 +804,18 @@
       "status": "PASS"
     },
     {
+      "detail": "tiny product and exact-small split stated explicitly",
+      "id": "paper_tiny_domain_accounting",
+      "status": "PASS"
+    },
+    {
+      "detail": "domains, non-identical pairs, partitions, and replays separated",
+      "id": "paper_abstract_enumerator_accounting",
+      "status": "PASS"
+    },
+    {
       "detail": [
-        "42",
+        "46",
         "6,536",
         "192,176",
         "65,814",
@@ -592,9 +866,9 @@
   "mode": "project",
   "scope": "deterministic structural audit; no analyzer, checker, experiment, or test module is imported or executed",
   "summary": {
-    "checks": 81,
+    "checks": 88,
     "failed": 0,
-    "passed": 81,
+    "passed": 88,
     "status": "PASS"
   }
 }

@@ -37,7 +37,7 @@ class ResultInvariantTests(unittest.TestCase):
         self.assertFalse(accounting["budget_reset"])
         self.assertFalse(accounting["positive_performance_claims_allowed"])
         verification = accounting["current_post_disposition_verification"]
-        self.assertEqual(verification["unit_tests"]["methods"], 42)
+        self.assertEqual(verification["unit_tests"]["methods"], 46)
         self.assertEqual(verification["unit_tests"]["status"], "PASS")
         self.assertEqual(
             verification["campaign_effect"],

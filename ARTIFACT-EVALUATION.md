@@ -5,14 +5,14 @@
 1. **Finite semantics and certificates.** Run `python run_tests.py` and inspect
    `src/producer.py`, `src/checker.py`, and `schema.md`.
 2. **Principal-filter correspondence on bounded abstract frames.** Run
-   `python abstract_model_check.py`; inspect the four premise-breaking controls.
+   `python abstract_model_check.py`; inspect the executed hidden-selector, unstable-identity, value-only, and overlapping-write witnesses and their restored-premise positive controls.
 3. **Deletion-core order theory on all small predicates.** Run
-   `python monotone_core_check.py`.
+   `python monotone_core_check.py`; inspect the executed sequential-write counterexample and restored monotone predicate.
 4. **Cross-implementation and representation robustness.** Run
    `python generated_differential_check.py`.
 5. **Cross-surface consistency and package hygiene.** Run
    `python audit_static.py --root .`.
-6. **All checks in an isolated copy.** Run `python verify_artifact.py`.
+6. **All checks in an isolated copy.** Run `python verify_artifact.py`; confirm that each fresh-output comparison is `PASS` and that the verifier mutation tests pass only because their deliberately corrupted cases are rejected.
 
 The complete sequence requires no external dependency and normally finishes in
 seconds on an ordinary CPU.

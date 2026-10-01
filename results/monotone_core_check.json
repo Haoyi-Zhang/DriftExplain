@@ -1,10 +1,50 @@
 {
   "counterexample_examples": [],
   "negative_control": {
-    "a_sufficient": false,
-    "ab_sufficient": true,
-    "empty_sufficient": true,
-    "upward_closed": false
+    "executed_overwrite_state_machine": {
+      "atom_order": [
+        "a writes 1",
+        "b writes 0"
+      ],
+      "deletion_core": "{b}",
+      "deletion_core_sufficient": true,
+      "minimal_sufficient_sets": [
+        "{}"
+      ],
+      "subset_results": {
+        "{a,b}": {
+          "final_state": 0,
+          "sufficient": true
+        },
+        "{a}": {
+          "final_state": 1,
+          "sufficient": false
+        },
+        "{b}": {
+          "final_state": 0,
+          "sufficient": true
+        },
+        "{}": {
+          "final_state": 0,
+          "sufficient": true
+        }
+      },
+      "sufficient_set_intersection": "{}",
+      "theorem_failure_observed": true,
+      "upward_closed": false
+    },
+    "passed": true,
+    "restored_monotone_positive_control": {
+      "deletion_core": "{a}",
+      "minimal_sufficient_sets": [
+        "{a}"
+      ],
+      "positive_control_passed": true,
+      "predicate": "a is selected",
+      "principal_filter": true,
+      "sufficient_set_intersection": "{a}",
+      "upward_closed": true
+    }
   },
   "per_dimension": [
     {
