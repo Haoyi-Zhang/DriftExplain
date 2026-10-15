@@ -256,3 +256,13 @@ evaluations, exceeding the frozen 800,000-obligation cap.  The campaign remains
 `EMPIRICAL_CAMPAIGN_TERMINATED_OVER_CAP`; timing and scaling files are not used
 for a positive performance claim.  Current unit and finite-check runs are
 post-disposition artifact verification and do not reset that accounting.
+
+## Manuscript architecture
+
+The support architecture is drawn directly in Python as a font-embedded vector
+PDF. Its arrows show the declared endpoint and certificate data flow,
+not measured traffic. With Python 3.9+ and Matplotlib, run from this directory:
+
+```sh
+python -B figures/draw_schematics.py --output figures
+```
