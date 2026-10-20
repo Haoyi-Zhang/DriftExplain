@@ -1,10 +1,26 @@
 cff-version: 1.2.0
-message: "Please cite the accompanying article when using this finite-analysis artifact."
-title: "Finite Evidence Support for Evolving Rule Analyzers"
+message: Please cite the manuscript in preferred-citation when using this artifact.
+title: Finite Evidence Support for Evolving Rule Analyzers
 type: software
 authors:
+- family-names: Ran
+  given-names: Huaijin
+- family-names: Zhang
+  given-names: Haoyi
+license: MIT
+preferred-citation:
+  type: unpublished
+  title: When Complete Evidence Makes Minimum Drift Explanations Structural
+  authors:
   - family-names: Ran
     given-names: Huaijin
   - family-names: Zhang
     given-names: Haoyi
-license: MIT
+  - family-names: Sun
+    given-names: Yuqiang
+  - family-names: Yu
+    given-names: Jiongchi
+  - family-names: Liu
+    given-names: Yang
+  notes: Haoyi Zhang and Huaijin Ran contributed equally to this work.
+repository-code: https://github.com/Haoyi-Zhang/DriftExplain
