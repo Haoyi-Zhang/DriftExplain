@@ -126,6 +126,8 @@ python -B candidate_query_check.py --output ../candidate-verification-new
 The output directory must not exist. `results/candidate_verification/` is
 retained evidence, not a writable destination for a new run. The new directory
 receives `summary.json` and `finite_query_counts.csv`.
+The retained finite-count rows have been recomputed against the current endpoint-reuse
+implementation; the Boolean-sweep summary retains its original execution.
 
 The candidate regression remains separate from the retained 46-method base
 receipts, and is now included in the one-command verifier. The benchmark checks 5,461
