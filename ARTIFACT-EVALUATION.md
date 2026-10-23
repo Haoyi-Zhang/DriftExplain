@@ -37,7 +37,12 @@ surfaces described in the paper.  The theorem is justified by the paper and
 `proofs/`, not by finite enumeration.  Zero disagreement is not a probability,
 accuracy, scalability, or deployment result.
 
-The following are explicit non-claims: Solidity/source parsing, source-to-fact
+The separate owned Python comparison bridge parses bounded source, verifies all
+274 hybrids of five endpoint pairs and checks native compiler warnings. Its
+1,060 candidate checks validate this interface only, not natural analyzer
+upgrades or a general source semantics.
+
+The following are explicit non-claims: Solidity parsing, general source-to-fact
 soundness, historical evolution, a 120-contract corpus, production security
 coverage, prevalence of the failure modes, and performance superiority.  The
 historical timing files are retained as negative protocol evidence because the

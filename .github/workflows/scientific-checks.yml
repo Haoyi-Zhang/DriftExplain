@@ -58,6 +58,16 @@ jobs:
           set -euo pipefail
           python -B -m unittest discover -s tests -p check_information_paths.py -v \
             2>&1 | tee "$RUNNER_TEMP/p025-scientific/raw/information-paths.txt"
+      - name: Check owned Python source hybrids and native compiler warnings
+        shell: bash
+        env:
+          PYTHONPATH: src
+        run: |
+          set -euo pipefail
+          python -B -m unittest discover -s tests -p check_source_bridge.py -v
+          python -B -O -m unittest discover -s tests -p check_source_bridge.py -v
+          timeout 30s python -B source_bridge_check.py --output "$RUNNER_TEMP/p025-scientific/source-bridge.json"
+          timeout 30s python -B -O source_bridge_check.py --output "$RUNNER_TEMP/p025-scientific/source-bridge-optimized.json"
       - name: Upload raw output and fresh results even when a gate fails
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -68,5 +78,7 @@ jobs:
             ${{ runner.temp }}/p025-scientific/verification.json
             ${{ runner.temp }}/p025-scientific/work/raw
             ${{ runner.temp }}/p025-scientific/work/regenerated
+            ${{ runner.temp }}/p025-scientific/source-bridge.json
+            ${{ runner.temp }}/p025-scientific/source-bridge-optimized.json
           if-no-files-found: error
           retention-days: 14

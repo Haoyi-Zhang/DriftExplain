@@ -204,7 +204,8 @@ def main() -> int:
         # Keep archived base counts intact; explicitly gate all current APIs.
         for name, pattern in (("prepared_support", "check_prepared_support.py"),
                               ("candidate_verification", "check_candidate_verification.py"),
-                              ("information_paths", "check_information_paths.py")):
+                              ("information_paths", "check_information_paths.py"),
+                              ("source_bridge", "check_source_bridge.py")):
             suite_env = dict(env)
             suite_env["PYTHONPATH"] = os.pathsep.join((str(copy_root / "src"),
                                                        str(copy_root), str(copy_root / "tests")))
@@ -223,6 +224,27 @@ def main() -> int:
             retain(name, executions[name])
 
         path_output = generated_root / "information-paths"
+        # Fresh source-side hybrids and compiler observations, never execution
+        # of the source examples. A successful run checks every admitted subset.
+        source_output = generated_root / "source-bridge.json"
+        executions["source_bridge_study"] = run(
+            [sys.executable, "-B", "source_bridge_check.py", "--output", str(source_output)],
+            copy_root, env, timeout_seconds=30)
+        retain("source_bridge_study", executions["source_bridge_study"])
+        source_report, source_error = load_json(source_output)
+        source_report = source_report or {}
+        source_bridge_ok = source_error is None and all(
+            type(source_report.get(key)) is int and source_report.get(key) == expected for key, expected in
+            (("source_pairs", 5), ("source_hybrids", 274),
+             ("candidate_subset_checks", 1060), ("independent_certificate_acceptances", 36),
+             ("source_commutation_or_native_warning_or_support_failures", 0)))
+        source_bindings = source_report.get("source_bindings", {})
+        source_names = {'src/source_bridge.py', 'source_bridge_check.py',
+                        'data/source_bridge_pairs.json', 'src/producer.py', 'src/checker.py'}
+        source_bridge_ok = source_bridge_ok and set(source_bindings) == source_names
+        if source_bridge_ok:
+            source_bridge_ok = all(hashlib.sha256((copy_root / name).read_bytes()).hexdigest()
+                                   == source_bindings[name] for name in source_names)
         executions["same_information"] = run(
             [sys.executable, "-B", "information_paths_check.py", "--output", str(path_output)],
             copy_root, env)
@@ -341,6 +363,7 @@ def main() -> int:
             and monotone.get("status") == "PASS"
             and current_unit_tests is not None
             and same_information_ok
+            and source_bridge_ok
             and not residue
         )
 
@@ -362,6 +385,11 @@ def main() -> int:
             },
             "fresh_result_comparisons": comparisons,
             "current_unit_tests": current_unit_tests,
+            "source_bridge": {"status": "PASS" if source_bridge_ok else "FAIL",
+                              "source_pairs": source_report.get("source_pairs"),
+                              "source_hybrids": source_report.get("source_hybrids"),
+                              "candidate_subset_checks": source_report.get("candidate_subset_checks"),
+                              "scope": "Owned comparison grammar only; no natural upgrade corpus or source execution"},
             "same_information_comparison": {"status": "PASS" if same_information_ok else "FAIL",
                                              "scientific_projection_equal": path_equal,
                                              "actual_source_bindings_valid": bindings_ok,

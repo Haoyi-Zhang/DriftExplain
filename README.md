@@ -19,12 +19,36 @@ verification under the same principal-filter promise needs k+1 for a supplied
 proper k-atom support, or d for the full delta. The identification lower bound
 is not a verification lower bound.
 
-The artifact does **not** provide a Solidity parser, a source-to-fact soundness
+The artifact does **not** provide a Solidity parser, a general source-to-fact soundness
 argument, a 120-contract corpus, historical source/rule evolution, production
 accuracy, or a performance advantage.  The nine records in
 `data/public_fixtures.json` are authored finite abstractions informed by public
 pattern examples; `external_inputs/selection.csv` records their context and
 explicitly denies source-level validation.
+
+## Owned Python source bridge
+
+`src/source_bridge.py` adds a separate, fail-closed Python syntax fragment: one
+to eight uniquely named functions, each returning `x is operand` or
+`x == operand`, with `operand` either `x` or an integer in 0..100. It exports
+operator and operand observations from CPython ASTs with their complete syntax
+descriptors, not hand-filled truth-value records. Disjoint source spans and
+stable function names bind each pair; unsupported syntax is rejected.
+
+```sh
+PYTHONPATH=src python -B -m unittest discover -s tests -p check_source_bridge.py -v
+python -B source_bridge_check.py --output /fresh/source-bridge.json
+```
+
+Five owned source pairs retain every one of their 274 source hybrids, native
+CPython `SyntaxWarning` records, exported models through their certificates,
+and source-relative support checks. All 1,060 candidate/subset checks and 36
+certificate-path checks agree. Changing literal 5 to 6 leaves a warning present
+but changes complete keyed evidence: value support is empty while exact support
+contains the operand edit. No source is executed: CPython only parses/compiles
+it. This is a controlled source-interface demonstration, not natural analyzer
+upgrades, general Python semantics, a performance study or a Solidity frontend.
+Older named finite fixtures remain authored records with their original scope.
 
 No statistical model is trained.  Predictive overfitting is therefore not an
 applicable interpretation.  The corresponding risk is specification and fixture

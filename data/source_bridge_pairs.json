@@ -1,0 +1,27 @@
+[
+  {
+    "name": "warning-introduced-with-unrelated-edit",
+    "old": "def focus(x):\n    return x == x\ndef other(x):\n    return x == x\n",
+    "new": "def focus(x):\n    return x is 5\ndef other(x):\n    return x == 7\n"
+  },
+  {
+    "name": "warning-preserved-literal-cause-changed",
+    "old": "def focus(x):\n    return x is 5\ndef other(x):\n    return x == x\n",
+    "new": "def focus(x):\n    return x is 6\ndef other(x):\n    return x == x\n"
+  },
+  {
+    "name": "warning-repaired-with-unrelated-origin-change",
+    "old": "def focus(x):\n    return x is 5\ndef other(x):\n    return x is 8\n",
+    "new": "def focus(x):\n    return x == 5\ndef other(x):\n    return x is 9\n"
+  },
+  {
+    "name": "same-absence-different-evidence",
+    "old": "def focus(x):\n    return x == x\ndef other(x):\n    return x is x\n",
+    "new": "def focus(x):\n    return x == 5\ndef other(x):\n    return x == x\n"
+  },
+  {
+    "name": "four-function-composed-edits",
+    "old": "def first(x):\n    return x == x\ndef second(x):\n    return x == x\ndef third(x):\n    return x == x\ndef fourth(x):\n    return x == x\n",
+    "new": "def first(x):\n    return x is 2\ndef second(x):\n    return x is 3\ndef third(x):\n    return x is 4\ndef fourth(x):\n    return x is 5\n"
+  }
+]

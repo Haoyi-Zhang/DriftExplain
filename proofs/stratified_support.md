@@ -400,7 +400,17 @@ footprints and may access the predicate solely through binary membership
 queries. A checker given structural access can identify support without those
 queries.
 
-The artifact supplies no source parser, Solidity-like semantics, source-side
-hybrid relation, identity certificate, extraction proof, or 120-contract corpus.
-The lifting statement is conditional and identifies the missing bridge; it does
-not discharge it.
+The owned Python comparison bridge now supplies one restricted source instance.
+Uniquely named functions contain one comparison each; operator and operand spans
+are disjoint, and their AST descriptors supply the two raw value-origin pairs.
+Replacing either span preserves the other descriptor and all other function
+records. Canonical finite patching therefore commutes with re-extraction for
+the admitted span edits. Every one of 274 source hybrids from five owned pairs
+checks this equality, and 1,060 candidate/subset comparisons check the lifted
+predicate. CPython compilation independently checks Boolean warning outcomes;
+it does not provide the complete evidence object. See `src/source_bridge.py`,
+`source_bridge_check.py` and `results/source-bridge/report.json`.
+
+This instance neither establishes Solidity-like or arbitrary-Python semantics
+nor supplies natural historical analyzer upgrades, production correspondence or
+a 120-contract corpus. The general lifting theorem remains conditional.

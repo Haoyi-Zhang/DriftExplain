@@ -73,7 +73,10 @@ replay totals are 2,302 and 1,753, respectively.
 ## Determinism and interpretation
 
 The current one-command verifier separately gates 46 base, six prepared-support,
-nine candidate and seven information-path methods. It generates fresh
+nine candidate, seven information-path and five source-bridge methods. It also
+generates every owned source hybrid through `source_bridge_check.py`, validates
+the fresh result's complete counts and actual source bindings, and checks source
+commutation, compiler-warning parity and exact-support equivalence. It generates fresh
 `information_paths_check.py` results, compares all scientific inputs/outputs and
 counts with `results/information-paths/report.json`, and validates actual source
 bindings. Only environment metadata varies. To repeat that comparison alone:
