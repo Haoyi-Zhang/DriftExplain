@@ -196,6 +196,11 @@ def main() -> int:
             (raw_root / f"{name}.txt").write_text(execution["output"], encoding="utf-8")
 
         executions: dict[str, dict[str, Any]] = {}
+        executions["pyflakes_upgrade"] = run(
+            [sys.executable, "-B", "pyflakes_upgrade_check.py", "--output",
+             str(generated_root / "pyflakes-upgrade.json"), "--tex",
+             str(generated_root / "pyflakes-upgrade-rows.tex")], copy_root, env)
+        retain("pyflakes_upgrade", executions["pyflakes_upgrade"])
         executions["unit_tests"] = run(
             [sys.executable, "run_tests.py"], copy_root, env
         )

@@ -63,6 +63,19 @@ three-valued equations; old-only framed rules remain observable when a newly
 present target has no final family rule; and cache-key validation does not
 authenticate cached values.
 
+## Released Pyflakes predicate replay
+
+`python -B pyflakes_upgrade_check.py --output results/pyflakes-upgrade.json --tex ../paper/pyflakes-upgrade-rows.tex`
+replays the reviewed 2.1.1-to-2.2.0 tuple-literal policy change and generates the
+manuscript table. Use a fresh JSON output path on repeat runs. The unchanged
+tuple input is upstream; the operand and repair transitions are owned
+compositions. This runs a bounded predicate translation, not the full upstream
+analyzers. `data/PYFLAKES-PROVENANCE.md` retains attribution, license, source
+locations and the representation boundary. Every finite subset and every
+supplied witness is checked with all three same-input receivers. The JSON
+retains endpoint models, certificates, review consequences and actual call
+counts. Warning and value baselines are projections of the same endpoints.
+
 ## One-command verification
 
 Requirements: Python 3.10 or newer, using only the standard library. No package

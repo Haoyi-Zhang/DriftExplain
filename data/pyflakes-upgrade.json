@@ -1,0 +1,41 @@
+{
+  "upstream": "PyCQA/pyflakes",
+  "old_tag": "2.1.1",
+  "new_tag": "2.2.0",
+  "sources": [
+    "https://github.com/PyCQA/pyflakes/blob/2.1.1/pyflakes/checker.py#L1686-L1699",
+    "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/checker.py#L83-L124",
+    "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/checker.py#L2237-L2251",
+    "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/test/test_is_literal.py",
+    "https://github.com/PyCQA/pyflakes/blob/2.2.0/NEWS.rst"
+  ],
+  "cases": [
+    {
+      "id": "upstream-tuple-upgrade",
+      "provenance": "Unchanged source from upstream test_is_tuple_constant; real released rule change, not a project maintenance history.",
+      "old_source": "x = 5\nif x is ():\n    pass\n",
+      "new_source": "x = 5\nif x is ():\n    pass\n",
+      "expected_values": ["F", "T"],
+      "expected_complete_size": 1,
+      "decision": "Route the newly reported warning to analyzer-policy review; no source edit caused it."
+    },
+    {
+      "id": "composed-operand-change",
+      "provenance": "Owned composition of upstream test_is_int and test_is_tuple_constant inputs; not an observed upstream source transition.",
+      "old_source": "x = 10\nif x is 10:\n    pass\n",
+      "new_source": "x = 5\nif x is ():\n    pass\n",
+      "expected_values": ["T", "T"],
+      "expected_complete_size": 3,
+      "decision": "Revalidate the retained warning justification: both operand observations and the upgraded literal mapping are needed."
+    },
+    {
+      "id": "composed-upgrade-and-repair",
+      "provenance": "Owned equality repair of upstream test_is_tuple_constant composed with the real rule upgrade; not an observed maintenance commit.",
+      "old_source": "x = 5\nif x is ():\n    pass\n",
+      "new_source": "x = 5\nif x == ():\n    pass\n",
+      "expected_values": ["F", "F"],
+      "expected_complete_size": 2,
+      "decision": "Do not treat absent-to-absent as no change: review the equality repair alongside the new tuple policy."
+    }
+  ]
+}

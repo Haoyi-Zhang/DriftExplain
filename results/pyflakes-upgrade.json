@@ -1,0 +1,791 @@
+{
+  "status": "PASS",
+  "scope": "Reviewed predicate replay, not full Pyflakes execution",
+  "upstream": {
+    "upstream": "PyCQA/pyflakes",
+    "old_tag": "2.1.1",
+    "new_tag": "2.2.0",
+    "sources": [
+      "https://github.com/PyCQA/pyflakes/blob/2.1.1/pyflakes/checker.py#L1686-L1699",
+      "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/checker.py#L83-L124",
+      "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/checker.py#L2237-L2251",
+      "https://github.com/PyCQA/pyflakes/blob/2.2.0/pyflakes/test/test_is_literal.py",
+      "https://github.com/PyCQA/pyflakes/blob/2.2.0/NEWS.rst"
+    ]
+  },
+  "records": [
+    {
+      "id": "upstream-tuple-upgrade",
+      "provenance": "Unchanged source from upstream test_is_tuple_constant; real released rule change, not a project maintenance history.",
+      "old_source": "x = 5\nif x is ():\n    pass\n",
+      "new_source": "x = 5\nif x is ():\n    pass\n",
+      "expected_values": [
+        "F",
+        "T"
+      ],
+      "expected_complete_size": 1,
+      "decision": "Route the newly reported warning to analyzer-policy review; no source edit caused it.",
+      "old": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "T",
+              "scalar": "F",
+              "tuple": "T"
+            },
+            "origins": {
+              "identity": "Is()",
+              "scalar": "Tuple(elts=[], ctx=Load())",
+              "tuple": "Tuple(elts=[], ctx=Load())"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "new": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "T",
+              "scalar": "F",
+              "tuple": "T"
+            },
+            "origins": {
+              "identity": "Is()",
+              "scalar": "Tuple(elts=[], ctx=Load())",
+              "tuple": "Tuple(elts=[], ctx=Load())"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar",
+            "tuple"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "certificate": {
+        "schema": "finite-finding-drift-certificate",
+        "candidate": {
+          "family": "IsLiteral",
+          "anchor": "comparison"
+        },
+        "change_bound": 12,
+        "classification": "newly_justified",
+        "old": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "F",
+          "reason": "all_rules_refuted",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "F",
+              "reason": "required_false",
+              "decisive": {
+                "canonical": "literal",
+                "value": "F",
+                "reason": "all_aliases_false",
+                "aliases": [
+                  "scalar"
+                ],
+                "observations": [
+                  {
+                    "alias": "scalar",
+                    "value": "F",
+                    "origin": "Tuple(elts=[], ctx=Load())"
+                  }
+                ]
+              },
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "T",
+                      "origin": "Is()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "F",
+                  "reason": "all_aliases_false",
+                  "aliases": [
+                    "scalar"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "F",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "new": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "T",
+          "reason": "supporting_rule",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "T",
+              "reason": "all_literals_satisfied",
+              "decisive": null,
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "T",
+                      "origin": "Is()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "scalar",
+                    "tuple"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "F",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    },
+                    {
+                      "alias": "tuple",
+                      "value": "T",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "delta": [
+          "normalizer|literal"
+        ],
+        "witness": [
+          "normalizer|literal"
+        ]
+      },
+      "warning_diff": true,
+      "minimum_value_supports": [
+        [
+          "normalizer|literal"
+        ]
+      ],
+      "complete_sufficient_subsets": [
+        [
+          "normalizer|literal"
+        ]
+      ],
+      "measurements": {
+        "identify": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 2,
+          "evidence_evaluations": 4
+        },
+        "candidate": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 1,
+          "evidence_evaluations": 3
+        },
+        "structure": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 0,
+          "evidence_evaluations": 2
+        }
+      }
+    },
+    {
+      "id": "composed-operand-change",
+      "provenance": "Owned composition of upstream test_is_int and test_is_tuple_constant inputs; not an observed upstream source transition.",
+      "old_source": "x = 10\nif x is 10:\n    pass\n",
+      "new_source": "x = 5\nif x is ():\n    pass\n",
+      "expected_values": [
+        "T",
+        "T"
+      ],
+      "expected_complete_size": 3,
+      "decision": "Revalidate the retained warning justification: both operand observations and the upgraded literal mapping are needed.",
+      "old": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "T",
+              "scalar": "T",
+              "tuple": "F"
+            },
+            "origins": {
+              "identity": "Is()",
+              "scalar": "Constant(value=10)",
+              "tuple": "Constant(value=10)"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "new": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "T",
+              "scalar": "F",
+              "tuple": "T"
+            },
+            "origins": {
+              "identity": "Is()",
+              "scalar": "Tuple(elts=[], ctx=Load())",
+              "tuple": "Tuple(elts=[], ctx=Load())"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar",
+            "tuple"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "certificate": {
+        "schema": "finite-finding-drift-certificate",
+        "candidate": {
+          "family": "IsLiteral",
+          "anchor": "comparison"
+        },
+        "change_bound": 12,
+        "classification": "preserved",
+        "old": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "T",
+          "reason": "supporting_rule",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "T",
+              "reason": "all_literals_satisfied",
+              "decisive": null,
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "T",
+                      "origin": "Is()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "scalar"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "T",
+                      "origin": "Constant(value=10)"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "new": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "T",
+          "reason": "supporting_rule",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "T",
+              "reason": "all_literals_satisfied",
+              "decisive": null,
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "T",
+                      "origin": "Is()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "scalar",
+                    "tuple"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "F",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    },
+                    {
+                      "alias": "tuple",
+                      "value": "T",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "delta": [
+          "normalizer|literal",
+          "program|comparison|scalar",
+          "program|comparison|tuple"
+        ],
+        "witness": [
+          "normalizer|literal",
+          "program|comparison|scalar",
+          "program|comparison|tuple"
+        ]
+      },
+      "warning_diff": false,
+      "minimum_value_supports": [
+        []
+      ],
+      "complete_sufficient_subsets": [
+        [
+          "normalizer|literal",
+          "program|comparison|scalar",
+          "program|comparison|tuple"
+        ]
+      ],
+      "measurements": {
+        "identify": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 4,
+          "evidence_evaluations": 6
+        },
+        "candidate": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 3,
+          "evidence_evaluations": 5
+        },
+        "structure": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 0,
+          "evidence_evaluations": 2
+        }
+      }
+    },
+    {
+      "id": "composed-upgrade-and-repair",
+      "provenance": "Owned equality repair of upstream test_is_tuple_constant composed with the real rule upgrade; not an observed maintenance commit.",
+      "old_source": "x = 5\nif x is ():\n    pass\n",
+      "new_source": "x = 5\nif x == ():\n    pass\n",
+      "expected_values": [
+        "F",
+        "F"
+      ],
+      "expected_complete_size": 2,
+      "decision": "Do not treat absent-to-absent as no change: review the equality repair alongside the new tuple policy.",
+      "old": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "T",
+              "scalar": "F",
+              "tuple": "T"
+            },
+            "origins": {
+              "identity": "Is()",
+              "scalar": "Tuple(elts=[], ctx=Load())",
+              "tuple": "Tuple(elts=[], ctx=Load())"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "new": {
+        "targets": [
+          {
+            "anchor": "comparison",
+            "raw": {
+              "identity": "F",
+              "scalar": "F",
+              "tuple": "T"
+            },
+            "origins": {
+              "identity": "Eq()",
+              "scalar": "Tuple(elts=[], ctx=Load())",
+              "tuple": "Tuple(elts=[], ctx=Load())"
+            }
+          }
+        ],
+        "normalizer": {
+          "identity": [
+            "identity"
+          ],
+          "literal": [
+            "scalar",
+            "tuple"
+          ]
+        },
+        "rules": [
+          {
+            "id": "IsLiteral",
+            "family": "IsLiteral",
+            "requires": [
+              "identity",
+              "literal"
+            ],
+            "forbids": []
+          }
+        ]
+      },
+      "certificate": {
+        "schema": "finite-finding-drift-certificate",
+        "candidate": {
+          "family": "IsLiteral",
+          "anchor": "comparison"
+        },
+        "change_bound": 12,
+        "classification": "absent",
+        "old": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "F",
+          "reason": "all_rules_refuted",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "F",
+              "reason": "required_false",
+              "decisive": {
+                "canonical": "literal",
+                "value": "F",
+                "reason": "all_aliases_false",
+                "aliases": [
+                  "scalar"
+                ],
+                "observations": [
+                  {
+                    "alias": "scalar",
+                    "value": "F",
+                    "origin": "Tuple(elts=[], ctx=Load())"
+                  }
+                ]
+              },
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "T",
+                      "origin": "Is()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "F",
+                  "reason": "all_aliases_false",
+                  "aliases": [
+                    "scalar"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "F",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "new": {
+          "family": "IsLiteral",
+          "anchor": "comparison",
+          "value": "F",
+          "reason": "all_rules_refuted",
+          "rules": [
+            {
+              "rule": "IsLiteral",
+              "family": "IsLiteral",
+              "value": "F",
+              "reason": "required_false",
+              "decisive": {
+                "canonical": "identity",
+                "value": "F",
+                "reason": "all_aliases_false",
+                "aliases": [
+                  "identity"
+                ],
+                "observations": [
+                  {
+                    "alias": "identity",
+                    "value": "F",
+                    "origin": "Eq()"
+                  }
+                ]
+              },
+              "required": [
+                {
+                  "canonical": "identity",
+                  "value": "F",
+                  "reason": "all_aliases_false",
+                  "aliases": [
+                    "identity"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "identity",
+                      "value": "F",
+                      "origin": "Eq()"
+                    }
+                  ]
+                },
+                {
+                  "canonical": "literal",
+                  "value": "T",
+                  "reason": "true_alias",
+                  "aliases": [
+                    "scalar",
+                    "tuple"
+                  ],
+                  "observations": [
+                    {
+                      "alias": "scalar",
+                      "value": "F",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    },
+                    {
+                      "alias": "tuple",
+                      "value": "T",
+                      "origin": "Tuple(elts=[], ctx=Load())"
+                    }
+                  ]
+                }
+              ],
+              "forbidden": []
+            }
+          ]
+        },
+        "delta": [
+          "normalizer|literal",
+          "program|comparison|identity"
+        ],
+        "witness": [
+          "normalizer|literal",
+          "program|comparison|identity"
+        ]
+      },
+      "warning_diff": false,
+      "minimum_value_supports": [
+        []
+      ],
+      "complete_sufficient_subsets": [
+        [
+          "normalizer|literal",
+          "program|comparison|identity"
+        ]
+      ],
+      "measurements": {
+        "identify": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 3,
+          "evidence_evaluations": 5
+        },
+        "candidate": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 2,
+          "evidence_evaluations": 4
+        },
+        "structure": {
+          "decision": [
+            true,
+            "accepted"
+          ],
+          "delta_reconstructions": 1,
+          "hybrid_replays": 0,
+          "evidence_evaluations": 2
+        }
+      }
+    }
+  ]
+}
