@@ -401,6 +401,12 @@ queries. A checker given structural access can identify support without those
 queries.
 
 The owned Python comparison bridge now supplies one restricted source instance.
+Its source-splice obligation is lexical: only the operator token belongs to the
+operator slot, not intervening operand parentheses. Padded keyword replacement
+preserves tokenization for compact equality syntax. The operand AST span is
+disjoint, and unobserved parentheses/spacing need not match final source bytes.
+The former whole-interoperand interval failed on admitted `x == x` to
+`x is (5)` endpoints; this boundary is now a retained all-subset regression.
 Uniquely named functions contain one comparison each; operator and operand spans
 are disjoint, and their AST descriptors supply the two raw value-origin pairs.
 Replacing either span preserves the other descriptor and all other function

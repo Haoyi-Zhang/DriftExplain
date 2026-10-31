@@ -35,6 +35,21 @@ operator and operand observations from CPython ASTs with their complete syntax
 descriptors, not hand-filled truth-value records. Disjoint source spans and
 stable function names bind each pair; unsupported syntax is rejected.
 
+Operator slots use the unique lexical `is`/`==` token rather than the text
+between AST operand offsets. The latter can include unmatched parentheses from
+one endpoint; replacing `x == x` by the admitted `x is (5)` previously exposed
+that source-splice failure. Keyword replacement now preserves token separation
+even in compact syntax. Parentheses/spacing remain outside the extracted
+observation, so source and finite patches must agree after extraction, not as
+byte-identical final source. The source-bridge regression checks every subset
+between six parenthesized/compact spellings, without executing a function.
+
+`tests/check_field_projection.py` separately checks strongest same-information
+projection on excluded rule metadata, dominated-alias origins, alias order,
+sparse moved-rule identities and the absent-target branch. Every subset is
+compared with exact evidence and all three receivers. It is now an explicit
+one-command verification group, not part of the archived 46-method count.
+
 ```sh
 PYTHONPATH=src python -B -m unittest discover -s tests -p check_source_bridge.py -v
 python -B source_bridge_check.py --output /fresh/source-bridge.json

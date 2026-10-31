@@ -1,5 +1,6 @@
 """Portable source-interface controls; separate from the retained 46 base tests."""
 import unittest
+from itertools import combinations, product
 from source_bridge import extract, patch_source, compiler_warnings
 from producer import compute_delta, apply_operations, make_certificate
 from checker import check_certificate
@@ -45,6 +46,23 @@ class SourceBridgeTests(unittest.TestCase):
         self.assertTrue(check_certificate(before.model, after.model, certificate)[0])
         certificate['witness'] = []
         self.assertFalse(check_certificate(before.model, after.model, certificate)[0])
+
+    def test_parentheses_and_compact_operator_splices_commute_for_every_subset(self):
+        # These spellings have the same admitted AST grammar; parentheses are
+        # not observation fields and cannot leak into an operator footprint.
+        expressions = ('x==x', 'x == (x)', '(x)==((x))',
+                       'x is 5', 'x is (5)', '(x)is((100))')
+        for old, new in product(expressions, repeat=2):
+            before = extract('def f(x):\n    return '+old+'\n')
+            after = extract('def f(x):\n    return '+new+'\n')
+            delta = compute_delta(before.model, after.model)
+            for size in range(len(delta)+1):
+                for selected in combinations(delta, size):
+                    with self.subTest(old=old, new=new, atoms=[a['id'] for a in selected]):
+                        hybrid = extract(patch_source(before, after, [a['id'] for a in selected]))
+                        self.assertEqual(hybrid.model, apply_operations(before.model, selected))
+                        predicted = (hybrid.model['targets'][0]['raw'] == {'identity': 'T', 'constant': 'T'})
+                        self.assertEqual(bool(compiler_warnings(hybrid)), predicted)
 
 
 if __name__ == '__main__':

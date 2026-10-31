@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import ast
 from dataclasses import dataclass
+import io
+import tokenize
 import warnings
 
 
@@ -23,6 +25,7 @@ def extract(source: str) -> Extracted:
     if type(source) is not str or not source.isascii() or len(source) > 8192:
         raise ValueError('source must be bounded ASCII text')
     tree = ast.parse(source)
+    tokens = tuple(tokenize.generate_tokens(io.StringIO(source).readline))
     if not 1 <= len(tree.body) <= 8:
         raise ValueError('expected one to eight functions')
     lines = source.splitlines(keepends=True)
@@ -64,8 +67,19 @@ def extract(source: str) -> Extracted:
                         'origins': {'identity': ast.dump(compare.ops[0], include_attributes=False),
                                     'constant': ast.dump(right, include_attributes=False)}})
         line = offsets[compare.lineno - 1]
-        slots['program|' + anchor + '|identity'] = (
-            line + compare.left.end_col_offset, line + right.col_offset)
+        # AST operand offsets do not delimit the operator: the intervening
+        # text can include the closing parentheses of the left operand and
+        # opening parentheses of the right one. Splicing that whole region
+        # can create an unmatched delimiter in an otherwise admitted hybrid.
+        operator = 'is' if type(compare.ops[0]) is ast.Is else '=='
+        operators = [token for token in tokens
+                     if token.string == operator and token.start[0] == compare.lineno
+                     and token.start[1] >= compare.left.end_col_offset
+                     and token.end[1] <= right.col_offset]
+        if len(operators) != 1:
+            raise ValueError('comparison operator has no unique lexical span')
+        token = operators[0]
+        slots['program|' + anchor + '|identity'] = (line + token.start[1], line + token.end[1])
         slots['program|' + anchor + '|constant'] = (
             line + right.col_offset, line + right.end_col_offset)
     model = {'targets': sorted(targets, key=lambda item: item['anchor']),
@@ -85,7 +99,12 @@ def patch_source(before: Extracted, after: Extracted, selected) -> str:
     for key in selected:
         start, end = before.slots[key]
         new_start, new_end = after.slots[key]
-        replacements.append((start, end, after.source[new_start:new_end]))
+        replacement = after.source[new_start:new_end]
+        # In compact x==x syntax a keyword replacement must not become xisx.
+        # Padding touches no operand or extracted descriptor.
+        if key.endswith('|identity'):
+            replacement = ' ' + replacement + ' '
+        replacements.append((start, end, replacement))
     replacements.sort(reverse=True)
     for index in range(1, len(replacements)):
         if replacements[index][1] > replacements[index - 1][0]:

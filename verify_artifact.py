@@ -210,6 +210,7 @@ def main() -> int:
         for name, pattern in (("prepared_support", "check_prepared_support.py"),
                               ("candidate_verification", "check_candidate_verification.py"),
                               ("information_paths", "check_information_paths.py"),
+                              ("field_projection", "check_field_projection.py"),
                               ("source_bridge", "check_source_bridge.py")):
             suite_env = dict(env)
             suite_env["PYTHONPATH"] = os.pathsep.join((str(copy_root / "src"),
