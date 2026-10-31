@@ -301,6 +301,16 @@ reordering occur in directed/unit cases.  Full subset enumeration covers 301
 tiny samples and all 64 directed cases, for 365 exact-small minimum comparisons;
 the corresponding subset replays split as 2,302 tiny plus 1,753 directed.
 
+## Actual released-analyzer observations
+
+The separate `integration/pyflakes_release.py` consumer runs the unmodified,
+MIT-licensed PyPI wheels on 31 fixed benign sources. The retained 62 observations
+agree with the finite diagnostic values in both releases, and the three existing
+endpoint pairs retain their warning transitions. Sources are parsed, not executed.
+`integration/README.md` describes reproducible isolated invocation and the offline
+raw-output rederivation. These are controlled diagnostic comparisons, not a
+historical maintenance cohort or an upstream complete-evidence interface.
+
 ## Retained predecessor evidence and resource boundary
 
 The archive retains earlier finite comparison, certificate-corruption, timing,

@@ -1,0 +1,893 @@
+{
+  "status": "PASS",
+  "registration": {
+    "operand_terms": [
+      "0",
+      "5",
+      "10",
+      "100",
+      "''",
+      "'word'",
+      "True",
+      "False",
+      "None",
+      "()",
+      "(5,)",
+      "(None,)",
+      "(5, True)",
+      "((5,),)",
+      "((None,), ())"
+    ],
+    "operators": [
+      "is",
+      "=="
+    ],
+    "source_count": 31,
+    "source_digests": [
+      "ca2dbefabf8e77ac48663c12b007ec214d23a729f949734e8f69665cdaab3bc3",
+      "309c817f83ea39d2abc28b69dd37f58cd6b6d305627918ad0959b883e7fc2226",
+      "d05d5a67e9526b4021eea99d9c6957bd647dd97a4ec11ce62c3fdae2fc568c1b",
+      "de0f1b82a6245ad0756172f57fb3471c43481db03726670f005440f63b9663f1",
+      "740371b11fd5d5441af1110a396cb32ebdec568f9617864cadddb9cd320d4ac7",
+      "573b0893b165a1476f6eaaf49d95c7a28e653e8b486e1962aab3f7a2b6a752ea",
+      "f8ea89a7412321662dff952d6f9459a55300df9a4da5d109d1f432808b42b513",
+      "3d2e42b5ef0bb860243b15a76e41984d4f2359432d9861b3be12978fa920fb95",
+      "dd8acb44e6f8a3ad49183be85f19f7fc3f3c862916688209f353e2bfcc648f80",
+      "6aa062365caee1685f0502695013aed5fb667e03d2dec40f87b93feb3e1f0f91",
+      "be22a157f9087bac884982fc261e4bf8d12fcf0aefc706765d9baf16f61a46db",
+      "f6448a6565d97ec12f6eed9d547c6a912f4b5e2633d63a24e716c24eab2f4450",
+      "8ac39531191f236f18c168f221b753129ef4c9e721eab1bd5b121c29ecc3af13",
+      "e4b6df32e4c18b394128e3ceabd258b77ec83813dc977a7b6f863b2441389871",
+      "05a302638d09b6f763e462f0bb80b3366be67f4747d5619132c46dcbdd62cd24",
+      "8ec8e3ec416c52e8c40a3115baa3a8d738ac5eb317a4b7bc3a9a97fb03ff755b",
+      "86ea1b9aedf9c37a7f8c5bdf55fd98d32c3b596e7bc2e51488b457964ffaad77",
+      "6227fb35f2b1fcd2cd1f3d34d565e7d805832ecccd0f80c3b5140526a7d602e0",
+      "20116531701627d6a485d52ef374df81d587b66492268d8ad41ccd201baf3606",
+      "b991b2f0f3a8cc8edf308adb26819caec135e5e396d25fb0c6a1bb6176306d12",
+      "76f2f5781388ee0ab44d4061ca107b524425ceb9d8e4d202ae9baa092e0d3151",
+      "0314f07571b9f86f645837407ce5a5e48e13feb61ebce444fc19a2442b78ec87",
+      "27b3282dc8abadaa6a187733d2d87cb706ad4758c4639d65bd8368e1b324ac67",
+      "d4c10440c34a260b5ac43920af78ebb387a469483a8a4b5bb3b22c72322bcd35",
+      "c9e9a564f6ee09b662178da76f42512592aa433d41c04a1ca509706441902d14",
+      "8ff67f82af7b7b517d8d4de9a3f8281611eba7eaefa1b1dd7f90f9aadf765e39",
+      "3c1c24dcfb179ae7059905d567e436c1338cc14ebba9e614544b4f5a3e4e31ec",
+      "d68c209f138d1b9a5a0cb285e88e7900b0cf7b8f40c63a7ce5382439b859b3ff",
+      "07dea1cb9bc49c1166c805af121b7deb3af9090c52e0472380533017cc79d63d",
+      "eab0d898c5d87c29d920d3cf24b7afab40f29669f330c94c38adcf7cb4565c13",
+      "8b125e53e7a0caf8c4d61258b687d5edc5e721d216398f823b80e919b6389c3d"
+    ],
+    "release_versions": [
+      "2.1.1",
+      "2.2.0"
+    ],
+    "maximum_observations": 62,
+    "per_observation_timeout_seconds": 3,
+    "total_wall_limit_seconds": 180,
+    "preregistered_before_observations": true,
+    "selection": "Fixed controls and the three previously registered endpoint pairs; not held-out natural source sampling"
+  },
+  "scope": "Actual released analyzer parsing on fixed benign sources; no source execution, historical environment, natural maintenance cohort, complete upstream evidence or measured user benefit",
+  "python": {
+    "version": "3.12.3",
+    "implementation": "CPython"
+  },
+  "releases": [
+    {
+      "version": "2.1.1",
+      "registry": "https://pypi.org/pypi/pyflakes/2.1.1/json",
+      "wheel": "pyflakes-2.1.1-py2.py3-none-any.whl",
+      "wheel_sha256": "17dbeb2e3f4d772725c777fabc446d5634d1038f234e77343108ce445ea69ce0",
+      "wheel_bytes": 59991,
+      "checker_sha256": "bf1107816c5b812d3c10c5c8bb0f17cbc0f4a9cf20dfceb9d18ab83c5bff329f",
+      "license_texts": {
+        "pyflakes-2.1.1.dist-info/LICENSE": "Copyright 2005-2011 Divmod, Inc.\nCopyright 2013-2014 Florent Xicluna\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+      },
+      "fetched_url": null,
+      "upstream_tuple_regression_present": false
+    },
+    {
+      "version": "2.2.0",
+      "registry": "https://pypi.org/pypi/pyflakes/2.2.0/json",
+      "wheel": "pyflakes-2.2.0-py2.py3-none-any.whl",
+      "wheel_sha256": "0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92",
+      "wheel_bytes": 66950,
+      "checker_sha256": "740acb9bef00dd00d3d6cdae84f17230fce80c5537864dba1a4fe55ca9248f94",
+      "license_texts": {
+        "pyflakes-2.2.0.dist-info/LICENSE": "Copyright 2005-2011 Divmod, Inc.\nCopyright 2013-2014 Florent Xicluna\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+      },
+      "fetched_url": null,
+      "upstream_tuple_regression_present": true
+    }
+  ],
+  "observations": [
+    {
+      "release": "2.1.1",
+      "source": "x = 10\nif x is 10:\n    pass\n",
+      "source_sha256": "ca2dbefabf8e77ac48663c12b007ec214d23a729f949734e8f69665cdaab3bc3",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == '':\n    pass\n",
+      "source_sha256": "309c817f83ea39d2abc28b69dd37f58cd6b6d305627918ad0959b883e7fc2226",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == 'word':\n    pass\n",
+      "source_sha256": "d05d5a67e9526b4021eea99d9c6957bd647dd97a4ec11ce62c3fdae2fc568c1b",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == ((5,),):\n    pass\n",
+      "source_sha256": "de0f1b82a6245ad0756172f57fb3471c43481db03726670f005440f63b9663f1",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == ((None,), ()):\n    pass\n",
+      "source_sha256": "740371b11fd5d5441af1110a396cb32ebdec568f9617864cadddb9cd320d4ac7",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == ():\n    pass\n",
+      "source_sha256": "573b0893b165a1476f6eaaf49d95c7a28e653e8b486e1962aab3f7a2b6a752ea",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == (5, True):\n    pass\n",
+      "source_sha256": "f8ea89a7412321662dff952d6f9459a55300df9a4da5d109d1f432808b42b513",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == (5,):\n    pass\n",
+      "source_sha256": "3d2e42b5ef0bb860243b15a76e41984d4f2359432d9861b3be12978fa920fb95",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == (None,):\n    pass\n",
+      "source_sha256": "dd8acb44e6f8a3ad49183be85f19f7fc3f3c862916688209f353e2bfcc648f80",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == 0:\n    pass\n",
+      "source_sha256": "6aa062365caee1685f0502695013aed5fb667e03d2dec40f87b93feb3e1f0f91",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == 100:\n    pass\n",
+      "source_sha256": "be22a157f9087bac884982fc261e4bf8d12fcf0aefc706765d9baf16f61a46db",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == 10:\n    pass\n",
+      "source_sha256": "f6448a6565d97ec12f6eed9d547c6a912f4b5e2633d63a24e716c24eab2f4450",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == 5:\n    pass\n",
+      "source_sha256": "8ac39531191f236f18c168f221b753129ef4c9e721eab1bd5b121c29ecc3af13",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == False:\n    pass\n",
+      "source_sha256": "e4b6df32e4c18b394128e3ceabd258b77ec83813dc977a7b6f863b2441389871",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == None:\n    pass\n",
+      "source_sha256": "05a302638d09b6f763e462f0bb80b3366be67f4747d5619132c46dcbdd62cd24",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x == True:\n    pass\n",
+      "source_sha256": "8ec8e3ec416c52e8c40a3115baa3a8d738ac5eb317a4b7bc3a9a97fb03ff755b",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is '':\n    pass\n",
+      "source_sha256": "86ea1b9aedf9c37a7f8c5bdf55fd98d32c3b596e7bc2e51488b457964ffaad77",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is 'word':\n    pass\n",
+      "source_sha256": "6227fb35f2b1fcd2cd1f3d34d565e7d805832ecccd0f80c3b5140526a7d602e0",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is ((5,),):\n    pass\n",
+      "source_sha256": "20116531701627d6a485d52ef374df81d587b66492268d8ad41ccd201baf3606",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is ((None,), ()):\n    pass\n",
+      "source_sha256": "b991b2f0f3a8cc8edf308adb26819caec135e5e396d25fb0c6a1bb6176306d12",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is ():\n    pass\n",
+      "source_sha256": "76f2f5781388ee0ab44d4061ca107b524425ceb9d8e4d202ae9baa092e0d3151",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is (5, True):\n    pass\n",
+      "source_sha256": "0314f07571b9f86f645837407ce5a5e48e13feb61ebce444fc19a2442b78ec87",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is (5,):\n    pass\n",
+      "source_sha256": "27b3282dc8abadaa6a187733d2d87cb706ad4758c4639d65bd8368e1b324ac67",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is (None,):\n    pass\n",
+      "source_sha256": "d4c10440c34a260b5ac43920af78ebb387a469483a8a4b5bb3b22c72322bcd35",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is 0:\n    pass\n",
+      "source_sha256": "c9e9a564f6ee09b662178da76f42512592aa433d41c04a1ca509706441902d14",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is 100:\n    pass\n",
+      "source_sha256": "8ff67f82af7b7b517d8d4de9a3f8281611eba7eaefa1b1dd7f90f9aadf765e39",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is 10:\n    pass\n",
+      "source_sha256": "3c1c24dcfb179ae7059905d567e436c1338cc14ebba9e614544b4f5a3e4e31ec",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is 5:\n    pass\n",
+      "source_sha256": "d68c209f138d1b9a5a0cb285e88e7900b0cf7b8f40c63a7ce5382439b859b3ff",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": null,
+          "message": "use ==/!= to compare str, bytes, and int literals"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is False:\n    pass\n",
+      "source_sha256": "07dea1cb9bc49c1166c805af121b7deb3af9090c52e0472380533017cc79d63d",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is None:\n    pass\n",
+      "source_sha256": "eab0d898c5d87c29d920d3cf24b7afab40f29669f330c94c38adcf7cb4565c13",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.1.1",
+      "source": "x = 5\nif x is True:\n    pass\n",
+      "source_sha256": "8b125e53e7a0caf8c4d61258b687d5edc5e721d216398f823b80e919b6389c3d",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 10\nif x is 10:\n    pass\n",
+      "source_sha256": "ca2dbefabf8e77ac48663c12b007ec214d23a729f949734e8f69665cdaab3bc3",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == '':\n    pass\n",
+      "source_sha256": "309c817f83ea39d2abc28b69dd37f58cd6b6d305627918ad0959b883e7fc2226",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == 'word':\n    pass\n",
+      "source_sha256": "d05d5a67e9526b4021eea99d9c6957bd647dd97a4ec11ce62c3fdae2fc568c1b",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == ((5,),):\n    pass\n",
+      "source_sha256": "de0f1b82a6245ad0756172f57fb3471c43481db03726670f005440f63b9663f1",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == ((None,), ()):\n    pass\n",
+      "source_sha256": "740371b11fd5d5441af1110a396cb32ebdec568f9617864cadddb9cd320d4ac7",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == ():\n    pass\n",
+      "source_sha256": "573b0893b165a1476f6eaaf49d95c7a28e653e8b486e1962aab3f7a2b6a752ea",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == (5, True):\n    pass\n",
+      "source_sha256": "f8ea89a7412321662dff952d6f9459a55300df9a4da5d109d1f432808b42b513",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == (5,):\n    pass\n",
+      "source_sha256": "3d2e42b5ef0bb860243b15a76e41984d4f2359432d9861b3be12978fa920fb95",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == (None,):\n    pass\n",
+      "source_sha256": "dd8acb44e6f8a3ad49183be85f19f7fc3f3c862916688209f353e2bfcc648f80",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == 0:\n    pass\n",
+      "source_sha256": "6aa062365caee1685f0502695013aed5fb667e03d2dec40f87b93feb3e1f0f91",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == 100:\n    pass\n",
+      "source_sha256": "be22a157f9087bac884982fc261e4bf8d12fcf0aefc706765d9baf16f61a46db",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == 10:\n    pass\n",
+      "source_sha256": "f6448a6565d97ec12f6eed9d547c6a912f4b5e2633d63a24e716c24eab2f4450",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == 5:\n    pass\n",
+      "source_sha256": "8ac39531191f236f18c168f221b753129ef4c9e721eab1bd5b121c29ecc3af13",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == False:\n    pass\n",
+      "source_sha256": "e4b6df32e4c18b394128e3ceabd258b77ec83813dc977a7b6f863b2441389871",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == None:\n    pass\n",
+      "source_sha256": "05a302638d09b6f763e462f0bb80b3366be67f4747d5619132c46dcbdd62cd24",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x == True:\n    pass\n",
+      "source_sha256": "8ec8e3ec416c52e8c40a3115baa3a8d738ac5eb317a4b7bc3a9a97fb03ff755b",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is '':\n    pass\n",
+      "source_sha256": "86ea1b9aedf9c37a7f8c5bdf55fd98d32c3b596e7bc2e51488b457964ffaad77",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is 'word':\n    pass\n",
+      "source_sha256": "6227fb35f2b1fcd2cd1f3d34d565e7d805832ecccd0f80c3b5140526a7d602e0",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is ((5,),):\n    pass\n",
+      "source_sha256": "20116531701627d6a485d52ef374df81d587b66492268d8ad41ccd201baf3606",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is ((None,), ()):\n    pass\n",
+      "source_sha256": "b991b2f0f3a8cc8edf308adb26819caec135e5e396d25fb0c6a1bb6176306d12",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is ():\n    pass\n",
+      "source_sha256": "76f2f5781388ee0ab44d4061ca107b524425ceb9d8e4d202ae9baa092e0d3151",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is (5, True):\n    pass\n",
+      "source_sha256": "0314f07571b9f86f645837407ce5a5e48e13feb61ebce444fc19a2442b78ec87",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is (5,):\n    pass\n",
+      "source_sha256": "27b3282dc8abadaa6a187733d2d87cb706ad4758c4639d65bd8368e1b324ac67",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is (None,):\n    pass\n",
+      "source_sha256": "d4c10440c34a260b5ac43920af78ebb387a469483a8a4b5bb3b22c72322bcd35",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is 0:\n    pass\n",
+      "source_sha256": "c9e9a564f6ee09b662178da76f42512592aa433d41c04a1ca509706441902d14",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is 100:\n    pass\n",
+      "source_sha256": "8ff67f82af7b7b517d8d4de9a3f8281611eba7eaefa1b1dd7f90f9aadf765e39",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is 10:\n    pass\n",
+      "source_sha256": "3c1c24dcfb179ae7059905d567e436c1338cc14ebba9e614544b4f5a3e4e31ec",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is 5:\n    pass\n",
+      "source_sha256": "d68c209f138d1b9a5a0cb285e88e7900b0cf7b8f40c63a7ce5382439b859b3ff",
+      "diagnostics": [
+        {
+          "line": 2,
+          "column": 4,
+          "message": "use ==/!= to compare constant literals (str, bytes, int, float, tuple)"
+        }
+      ],
+      "exit_code": 1,
+      "finite_value": "T",
+      "released_value": "T",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is False:\n    pass\n",
+      "source_sha256": "07dea1cb9bc49c1166c805af121b7deb3af9090c52e0472380533017cc79d63d",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is None:\n    pass\n",
+      "source_sha256": "eab0d898c5d87c29d920d3cf24b7afab40f29669f330c94c38adcf7cb4565c13",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    },
+    {
+      "release": "2.2.0",
+      "source": "x = 5\nif x is True:\n    pass\n",
+      "source_sha256": "8b125e53e7a0caf8c4d61258b687d5edc5e721d216398f823b80e919b6389c3d",
+      "diagnostics": [],
+      "exit_code": 0,
+      "finite_value": "F",
+      "released_value": "F",
+      "agrees": true
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "upstream-tuple-upgrade",
+      "values": [
+        "F",
+        "T"
+      ],
+      "expected": [
+        "F",
+        "T"
+      ],
+      "provenance": "Unchanged source from upstream test_is_tuple_constant; real released rule change, not a project maintenance history."
+    },
+    {
+      "id": "composed-operand-change",
+      "values": [
+        "T",
+        "T"
+      ],
+      "expected": [
+        "T",
+        "T"
+      ],
+      "provenance": "Owned composition of upstream test_is_int and test_is_tuple_constant inputs; not an observed upstream source transition."
+    },
+    {
+      "id": "composed-upgrade-and-repair",
+      "values": [
+        "F",
+        "F"
+      ],
+      "expected": [
+        "F",
+        "F"
+      ],
+      "provenance": "Owned equality repair of upstream test_is_tuple_constant composed with the real rule upgrade; not an observed maintenance commit."
+    }
+  ],
+  "input_cells_observed": 62,
+  "mismatches": 0,
+  "boundary": "Diagnostic values are compared. The finite normalizer is a semantic encoding, not an exported Pyflakes interface. Scalar and tuple observations can share one source operand; arbitrary coordinate hybrids need not be source-realizable.",
+  "source_bindings": {
+    "integration/pyflakes_release.py": "a4a91d9fb13668a5b4eb135f4b3fe0a8e9cd3e9c0a5566ea40ee5a2951b2ae8a",
+    "pyflakes_upgrade_check.py": "46c3f800ec778b2d589685f073cb7ad25af46bbc689a0175562aca86faff0950",
+    "data/pyflakes-upgrade.json": "ef34291ed64ccf8efd77c717494a70bee3a41c7c91eb718bdce36991524be45c",
+    "src/producer.py": "e4ab101435f6d89fd6f228e8769301ffc5de35b2649249235223782484420a20",
+    "src/checker.py": "e8d1f54d676db1eaefaadc2ef231ee6c7a83cb720248e6a4adae77aa93ff8f7a"
+  },
+  "performance_claim": false
+}

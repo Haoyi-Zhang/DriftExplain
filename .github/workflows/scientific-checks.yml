@@ -68,6 +68,13 @@ jobs:
           python -B -O -m unittest discover -s tests -p check_source_bridge.py -v
           timeout 30s python -B source_bridge_check.py --output "$RUNNER_TEMP/p025-scientific/source-bridge.json"
           timeout 30s python -B -O source_bridge_check.py --output "$RUNNER_TEMP/p025-scientific/source-bridge-optimized.json"
+      - name: Check captured released-analyzer observations without network access
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B tests/check_pyflakes_release.py
+          python -B -O tests/check_pyflakes_release.py
+          python -B integration/verify_pyflakes_release.py
       - name: Upload raw output and fresh results even when a gate fails
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

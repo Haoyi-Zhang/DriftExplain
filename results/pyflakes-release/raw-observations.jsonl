@@ -1,0 +1,62 @@
+{"release": "2.1.1", "source": "x = 10\nif x is 10:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == '':\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == 'word':\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == ((5,),):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == ((None,), ()):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == ():\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == (5, True):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == (5,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == (None,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == 0:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == 100:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == 10:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == 5:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == False:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == None:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x == True:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is '':\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is 'word':\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is ((5,),):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is ((None,), ()):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is ():\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is (5, True):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is (5,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is (None,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is 0:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is 100:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is 10:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is 5:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2: use ==/!= to compare str, bytes, and int literals\n", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is False:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is None:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.1.1", "source": "x = 5\nif x is True:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 10\nif x is 10:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == '':\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == 'word':\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == ((5,),):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == ((None,), ()):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == ():\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == (5, True):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == (5,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == (None,):\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == 0:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == 100:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == 10:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == 5:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == False:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == None:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x == True:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is '':\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is 'word':\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is ((5,),):\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is ((None,), ()):\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is ():\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is (5, True):\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is (5,):\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is (None,):\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is 0:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is 100:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is 10:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is 5:\n    pass\n", "returncode": 1, "stdout": "<INPUT>:2:4 use ==/!= to compare constant literals (str, bytes, int, float, tuple)\n", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is False:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is None:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
+{"release": "2.2.0", "source": "x = 5\nif x is True:\n    pass\n", "returncode": 0, "stdout": "", "stderr": ""}
