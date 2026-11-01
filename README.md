@@ -303,6 +303,32 @@ the corresponding subset replays split as 2,302 tiny plus 1,753 directed.
 
 ## Actual released-analyzer observations
 
+The additional `integration/pyflakes_source.py` frontend automatically exports
+every comparison-chain edge in an admitted bounded module, including literals
+on either side, IsNot and nested tuples. `make_source_certificate` produces a
+packet; `check_source_certificate` reconstructs the expected models from source
+bytes supplied separately by the receiver and enforces source/release bindings.
+It refuses annotation/deferred/newer-syntax profiles it cannot justify. Anchors
+refer to the same source, not automatically matched entities across edits.
+
+```sh
+python -B -m unittest discover -s tests -p check_whole_source.py -v
+python -O -B -m unittest discover -s tests -p check_whole_source.py -v
+python -B integration/pyflakes_source_study.py --fetch --wheel-dir /external/wheels --output /external/fresh/source-consumer
+```
+
+This command verifies the two original MIT-licensed wheels and statically
+selects every literal-source test-harness call in the pinned new release's
+literal-rule test file before observing outputs. The retained 31 upstream
+snippets contain 35 comparison edges; all 62 native parse observations match
+the automatic export and all 35 source-bound packets are accepted. Two snippets
+change their warning multiset. `results/source_consumer/` keeps these inputs,
+raw observations, permissions and packets, separately from the earlier 31
+authored controls. No input program executes. These are actual upstream
+regression snippets, not 31 independent projects or a natural maintenance
+cohort. The source frontend does not export every Pyflakes diagnostic or prove
+source realizability for arbitrary coordinate hybrids.
+
 The separate `integration/pyflakes_release.py` consumer runs the unmodified,
 MIT-licensed PyPI wheels on 31 fixed benign sources. The retained 62 observations
 agree with the finite diagnostic values in both releases, and the three existing

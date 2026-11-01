@@ -75,6 +75,13 @@ jobs:
           python -B tests/check_pyflakes_release.py
           python -B -O tests/check_pyflakes_release.py
           python -B integration/verify_pyflakes_release.py
+      - name: Check automatic full-module comparison export and source-bound reception
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B -m unittest discover -s tests -p check_whole_source.py -v
+          python -O -B -m unittest discover -s tests -p check_whole_source.py -v
+          timeout 120s python -B integration/pyflakes_source_study.py --fetch --wheel-dir "$RUNNER_TEMP/pyflakes-wheels" --output "$RUNNER_TEMP/p025-scientific/source-consumer"
       - name: Upload raw output and fresh results even when a gate fails
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -87,5 +94,6 @@ jobs:
             ${{ runner.temp }}/p025-scientific/work/regenerated
             ${{ runner.temp }}/p025-scientific/source-bridge.json
             ${{ runner.temp }}/p025-scientific/source-bridge-optimized.json
+            ${{ runner.temp }}/p025-scientific/source-consumer
           if-no-files-found: error
           retention-days: 14

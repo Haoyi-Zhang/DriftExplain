@@ -1,0 +1,219 @@
+[
+  {
+    "id": "test_is_str:0",
+    "source": "x = 'foo'\nif x is 'foo':\n    pass\n",
+    "source_sha256": "9d7252823666b3071815d8c3b4fcb9999481441bbd85c80dd4e416028418d4a2",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_str"
+  },
+  {
+    "id": "test_is_bytes:0",
+    "source": "x = b'foo'\nif x is b'foo':\n    pass\n",
+    "source_sha256": "18396d7c4be13cadf0cbd6dc886002ed0d61384475e8e1e801df239f176fa4b2",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_bytes"
+  },
+  {
+    "id": "test_is_unicode:0",
+    "source": "x = u'foo'\nif x is u'foo':\n    pass\n",
+    "source_sha256": "c51812d95bc92841f390b16abd756f7241791f9835eba04c8d1fc9e876623279",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_unicode"
+  },
+  {
+    "id": "test_is_int:0",
+    "source": "x = 10\nif x is 10:\n    pass\n",
+    "source_sha256": "ca2dbefabf8e77ac48663c12b007ec214d23a729f949734e8f69665cdaab3bc3",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_int"
+  },
+  {
+    "id": "test_is_true:0",
+    "source": "x = True\nif x is True:\n    pass\n",
+    "source_sha256": "c528d527274047142cf6b5da308498976fab98cbd5e65e0a8a325a2674d3ce0e",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_true"
+  },
+  {
+    "id": "test_is_false:0",
+    "source": "x = False\nif x is False:\n    pass\n",
+    "source_sha256": "7b4343bc5be93ed75651f3d9714667fc48eda2f0bb81e25b10995715f228baa5",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_false"
+  },
+  {
+    "id": "test_is_not_str:0",
+    "source": "x = 'foo'\nif x is not 'foo':\n    pass\n",
+    "source_sha256": "69d57c4100af2180fdf2b962b632966fefeff130b5858c790d1c847d51f57dce",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_str"
+  },
+  {
+    "id": "test_is_not_bytes:0",
+    "source": "x = b'foo'\nif x is not b'foo':\n    pass\n",
+    "source_sha256": "202340f1e7e6cb9bb8f82ed6bcd4107bc19e5b3dc510fcfd27b3e79be1e516ef",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_bytes"
+  },
+  {
+    "id": "test_is_not_unicode:0",
+    "source": "x = u'foo'\nif x is not u'foo':\n    pass\n",
+    "source_sha256": "66c75fc440193e40536db53d995fb5285805c398728a85c1fef84ae7d1be65a0",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_unicode"
+  },
+  {
+    "id": "test_is_not_int:0",
+    "source": "x = 10\nif x is not 10:\n    pass\n",
+    "source_sha256": "c845668f832e9033f38b892dbfc1f1a44c6f40125ef13a41f7a1242d5f535fa4",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_int"
+  },
+  {
+    "id": "test_is_not_true:0",
+    "source": "x = True\nif x is not True:\n    pass\n",
+    "source_sha256": "7bfa9df4ca3198e719cfa0d0994bd8446b6f207c17bb79787dd1ca10e91c5c2a",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_true"
+  },
+  {
+    "id": "test_is_not_false:0",
+    "source": "x = False\nif x is not False:\n    pass\n",
+    "source_sha256": "3b841812bed6fb7b21e35bb1b4025c59608ba4c179b1e2c6630488837dd48577",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_not_false"
+  },
+  {
+    "id": "test_left_is_str:0",
+    "source": "x = 'foo'\nif 'foo' is x:\n    pass\n",
+    "source_sha256": "76f38f90b14015828738c35027b975fa5ee7b80bbfc69e54776c3fa2cf49e23e",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_str"
+  },
+  {
+    "id": "test_left_is_bytes:0",
+    "source": "x = b'foo'\nif b'foo' is x:\n    pass\n",
+    "source_sha256": "97febcbacdd394fd1fb714944744ccedb60e30600a81ee569ff14f608f81dbcf",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_bytes"
+  },
+  {
+    "id": "test_left_is_unicode:0",
+    "source": "x = u'foo'\nif u'foo' is x:\n    pass\n",
+    "source_sha256": "6cafbb4e615218de362acc902b41919695c02e2b180dd682c772b65b8a1c033d",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_unicode"
+  },
+  {
+    "id": "test_left_is_int:0",
+    "source": "x = 10\nif 10 is x:\n    pass\n",
+    "source_sha256": "9d7fb1f84eef34166c5af186a3d9b949cd479aa1b14423a09a5821074bea41de",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_int"
+  },
+  {
+    "id": "test_left_is_true:0",
+    "source": "x = True\nif True is x:\n    pass\n",
+    "source_sha256": "d4140ca3bffe6bcb6d712834bae70f92ab54b6de324a0491cb4d8ea0f542851c",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_true"
+  },
+  {
+    "id": "test_left_is_false:0",
+    "source": "x = False\nif False is x:\n    pass\n",
+    "source_sha256": "b6040a87c5af404a49ae750183dce6bbd85d7d3f2d5b3eff1232dc3c6106f18e",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_false"
+  },
+  {
+    "id": "test_left_is_not_str:0",
+    "source": "x = 'foo'\nif 'foo' is not x:\n    pass\n",
+    "source_sha256": "fc4cec96b6efe1be3b544df56aacd7066a1a45745551086f8619f4dcf0e28d86",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_str"
+  },
+  {
+    "id": "test_left_is_not_bytes:0",
+    "source": "x = b'foo'\nif b'foo' is not x:\n    pass\n",
+    "source_sha256": "fa9cc2b8f5e9e6f26a8cda743546be70dc789985a8d923f83871305e99ce12de",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_bytes"
+  },
+  {
+    "id": "test_left_is_not_unicode:0",
+    "source": "x = u'foo'\nif u'foo' is not x:\n    pass\n",
+    "source_sha256": "53d7ee4b8f3b27711ce2f256961c2a7280af3a87f40df2f2920a14fe73ddad46",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_unicode"
+  },
+  {
+    "id": "test_left_is_not_int:0",
+    "source": "x = 10\nif 10 is not x:\n    pass\n",
+    "source_sha256": "aed77f1509cf22f35579cc68b85e8cb5e2d68a4cc32848f830932880ce4d4289",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_int"
+  },
+  {
+    "id": "test_left_is_not_true:0",
+    "source": "x = True\nif True is not x:\n    pass\n",
+    "source_sha256": "7b867e19bd472e8ad34ca04fa09502938ae92d321de6f3b3978a3934a6b6a8bf",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_true"
+  },
+  {
+    "id": "test_left_is_not_false:0",
+    "source": "x = False\nif False is not x:\n    pass\n",
+    "source_sha256": "5562229389a0d9fb49e1de4085c82d6374180ba1eb11e2ab6ec5a0fdf57b8617",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_left_is_not_false"
+  },
+  {
+    "id": "test_chained_operators_is_true:0",
+    "source": "x = 5\nif x is True < 4:\n    pass\n",
+    "source_sha256": "540b1acba255073ae3ceccf05ca2d5317f3f518ba3db5abd07c0bdd5a96fb8c1",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_chained_operators_is_true"
+  },
+  {
+    "id": "test_chained_operators_is_str:0",
+    "source": "x = 5\nif x is 'foo' < 4:\n    pass\n",
+    "source_sha256": "55611f2c2df46a71a9a897ddc8224a708a4db920103de8ae4827a48f059329d1",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_chained_operators_is_str"
+  },
+  {
+    "id": "test_chained_operators_is_true_end:0",
+    "source": "x = 5\nif 4 < x is True:\n    pass\n",
+    "source_sha256": "bb8b5a6ff605e1d50077bf64c39e081ea34f832cd09fe0eabc81ff4c5ccf494d",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_chained_operators_is_true_end"
+  },
+  {
+    "id": "test_chained_operators_is_str_end:0",
+    "source": "x = 5\nif 4 < x is 'foo':\n    pass\n",
+    "source_sha256": "f23c8de902d78e1365841114aa77dcc63ad7408ace8fddc487241f12c0958a18",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_chained_operators_is_str_end"
+  },
+  {
+    "id": "test_is_tuple_constant:0",
+    "source": "x = 5\nif x is ():\n    pass\n",
+    "source_sha256": "76f2f5781388ee0ab44d4061ca107b524425ceb9d8e4d202ae9baa092e0d3151",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_tuple_constant"
+  },
+  {
+    "id": "test_is_tuple_constant_containing_constants:0",
+    "source": "x = 5\nif x is (1, '2', True, (1.5, ())):\n    pass\n",
+    "source_sha256": "e966ced283e3b5e4528bc705701708145913fab4370032ff3f1319dc4428ce10",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_tuple_constant_containing_constants"
+  },
+  {
+    "id": "test_is_tuple_containing_variables_ok:0",
+    "source": "x = 5\nif x is (x,):\n    pass\n",
+    "source_sha256": "63675257dbed50eeff079a0ed753ca1b2ed6d7ce1d5f91006b733dd0f4ff84b3",
+    "provenance": "pyflakes/test/test_is_literal.py",
+    "test_function": "test_is_tuple_containing_variables_ok"
+  }
+]

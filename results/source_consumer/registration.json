@@ -1,0 +1,12 @@
+{
+  "selection": "Every literal-string flakes call in every test_ function of the pinned new-release literal-rule test file",
+  "test_source_sha256": "a63f570923919b3159e9f3918f5dbf1c6b6158fe9137930f7a8ca3de4af0571b",
+  "cases": 31,
+  "maximum_cases": 64,
+  "maximum_release_processes": 2,
+  "per_process_timeout_seconds": 30,
+  "wall_limit_seconds": 120,
+  "candidate_program_execution": false,
+  "source_files_not_changed": true,
+  "source_matching": "identical source; only analyzer policy changes"
+}
