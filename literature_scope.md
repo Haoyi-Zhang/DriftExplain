@@ -13,14 +13,14 @@ measured speed advantage.
 
 ## Relevance-first comparison set
 
-The manuscript contains 67 unique scholarly references, all cited in the
+The manuscript contains 67 unique references (66 scholarly sources and one official software-source record), all cited in the
 text.  The comparison set spans eleven overlapping roles:
 
 1. dependence, slicing, and abstract interpretation (7);
 2. data and programming-language provenance (7);
 3. structural causality and responsibility (5);
 4. debugging, program reduction, and hardness (6);
-5. monotone minimal-set theory (3);
+5. monotone minimal-set theory (2);
 6. formal sufficient and abductive explanations (2);
 7. change impact, regression, and warning evolution (13);
 8. incremental computation and maintenance (7);
@@ -28,7 +28,7 @@ text.  The comparison set spans eleven overlapping roles:
 10. analyzer practice (4); and
 11. smart-contract analysis and business-logic interfaces (5).
 
-The total is 67.  Roles are used for organization rather than a claim that the
+The scholarly comparison-set total is 66; the official software-source record is additional.  Roles are used for organization rather than a claim that the
 literatures are disjoint.
 
 ## Closest-work relationship
