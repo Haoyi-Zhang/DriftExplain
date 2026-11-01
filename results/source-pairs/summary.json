@@ -1,0 +1,13 @@
+{
+  "admitted_pairs": 27,
+  "application_decisions_or_time_savings_measured": false,
+  "exact_support_subset_checks": 108,
+  "excluded_pairs": 4,
+  "native_model_disagreements": 0,
+  "native_parse_observations": 216,
+  "natural_maintenance_commits": 0,
+  "source_certificate_targets": 27,
+  "source_inputs": 31,
+  "source_realizable_hybrids": 108,
+  "status": "PASS"
+}

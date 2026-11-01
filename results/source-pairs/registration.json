@@ -1,0 +1,37 @@
+{
+  "admitted": 27,
+  "edit": "Toggle the first single is/is-not/equality operator; prepend one comment line",
+  "edited_partners_are_authored": true,
+  "excluded": [
+    {
+      "id": "test_chained_operators_is_true:0",
+      "reason": "first comparison outside fixed operator edit"
+    },
+    {
+      "id": "test_chained_operators_is_str:0",
+      "reason": "first comparison outside fixed operator edit"
+    },
+    {
+      "id": "test_chained_operators_is_true_end:0",
+      "reason": "first comparison outside fixed operator edit"
+    },
+    {
+      "id": "test_chained_operators_is_str_end:0",
+      "reason": "first comparison outside fixed operator edit"
+    }
+  ],
+  "maximum_analyzer_processes": 2,
+  "maximum_input_modules": 512,
+  "natural_maintenance_commits": false,
+  "per_process_seconds": 30,
+  "selection": "All pinned literal-rule upstream regression string inputs, then outcome-independent fixed syntax admission",
+  "source_bindings": {
+    "integration/pyflakes_source.py": "285e262c4b9d6c43c8d9565b2ef226af2985d1d235f11c42cd76a08cefefb66c",
+    "integration/source_pair.py": "45802405664f22c2f704a9e29e64f3889b5ba842e44c36c49ae31fba02af1fc1",
+    "integration/source_pair_study.py": "62ecd8279a9ceaae80df9f548dc2428298816fafa2ba85b36f8cce8f4307499d",
+    "src/checker.py": "e8d1f54d676db1eaefaadc2ef231ee6c7a83cb720248e6a4adae77aa93ff8f7a",
+    "src/producer.py": "e4ab101435f6d89fd6f228e8769301ffc5de35b2649249235223782484420a20"
+  },
+  "source_inputs": 31,
+  "test_source_sha256": "a63f570923919b3159e9f3918f5dbf1c6b6158fe9137930f7a8ca3de4af0571b"
+}

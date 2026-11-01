@@ -8,6 +8,32 @@ the paper's finite claims.
 
 ## Scientific scope
 
+### Realizable source-pair blocks
+
+`integration/source_pair.py` adds checked correspondence across two source
+texts. The enclosing AST must agree after comparison expressions are replaced
+by holes. AST paths identify the holes despite line/spacing changes. Whole
+single-edge comparison expressions are source atoms; their coupled scalar,
+tuple and operator observations cannot be independently spliced. Chains,
+nested comparisons, overlapping spans and other structural changes reject.
+Every emitted hybrid is parsed and re-extracted, and the receiver reconstructs
+both source identities and the disjoint block partition before checking support.
+
+```sh
+python -B -m unittest discover -s tests -p check_source_pair.py -v
+python -B integration/check_source_pairs.py
+python -B integration/report_source_pairs.py --output ../paper/source-pair-results.tex
+```
+
+`results/source-pairs` retains all 31 source selections, four explicit syntax
+exclusions, 27 admitted source pairs and 108 realizable hybrids. The unmodified
+analyzers parse every hybrid, giving 216 observations with no diagnostic-value
+disagreement. Every exact-evidence subset check agrees with the projected
+source-block support. Edited partners are fixed authored operator changes to
+upstream regression inputs, not natural maintenance commits or measured user
+utility. Source programs are never executed. Captured-native verification is
+not a claim that the analyzers were rerun in that verification invocation.
+
 The positive result is deliberately narrow.  For one fixed comparison frame,
 complete key-addressed evidence, and an endpoint delta whose observable atom
 footprints are disjoint and complete, the sufficient change subsets are exactly

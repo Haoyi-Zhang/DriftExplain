@@ -1,0 +1,434 @@
+[
+  {
+    "id": "test_is_str:0:hybrid:0",
+    "source": "x = 'foo'\nif x is 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_str:0:hybrid:1",
+    "source": "x = 'foo'\nif x is 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_str:0:hybrid:2",
+    "source": "x = 'foo'\nif x == 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_str:0:hybrid:3",
+    "source": "x = 'foo'\nif x == 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_bytes:0:hybrid:0",
+    "source": "x = b'foo'\nif x is b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_bytes:0:hybrid:1",
+    "source": "x = b'foo'\nif x is b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_bytes:0:hybrid:2",
+    "source": "x = b'foo'\nif x == b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_bytes:0:hybrid:3",
+    "source": "x = b'foo'\nif x == b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_unicode:0:hybrid:0",
+    "source": "x = u'foo'\nif x is u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_unicode:0:hybrid:1",
+    "source": "x = u'foo'\nif x is u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_unicode:0:hybrid:2",
+    "source": "x = u'foo'\nif x == u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_unicode:0:hybrid:3",
+    "source": "x = u'foo'\nif x == u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_int:0:hybrid:0",
+    "source": "x = 10\nif x is 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_int:0:hybrid:1",
+    "source": "x = 10\nif x is 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_int:0:hybrid:2",
+    "source": "x = 10\nif x == 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_int:0:hybrid:3",
+    "source": "x = 10\nif x == 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_true:0:hybrid:0",
+    "source": "x = True\nif x is True:\n    pass\n"
+  },
+  {
+    "id": "test_is_true:0:hybrid:1",
+    "source": "x = True\nif x is True:\n    pass\n"
+  },
+  {
+    "id": "test_is_true:0:hybrid:2",
+    "source": "x = True\nif x == True:\n    pass\n"
+  },
+  {
+    "id": "test_is_true:0:hybrid:3",
+    "source": "x = True\nif x == True:\n    pass\n"
+  },
+  {
+    "id": "test_is_false:0:hybrid:0",
+    "source": "x = False\nif x is False:\n    pass\n"
+  },
+  {
+    "id": "test_is_false:0:hybrid:1",
+    "source": "x = False\nif x is False:\n    pass\n"
+  },
+  {
+    "id": "test_is_false:0:hybrid:2",
+    "source": "x = False\nif x == False:\n    pass\n"
+  },
+  {
+    "id": "test_is_false:0:hybrid:3",
+    "source": "x = False\nif x == False:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_str:0:hybrid:0",
+    "source": "x = 'foo'\nif x is not 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_str:0:hybrid:1",
+    "source": "x = 'foo'\nif x is not 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_str:0:hybrid:2",
+    "source": "x = 'foo'\nif x != 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_str:0:hybrid:3",
+    "source": "x = 'foo'\nif x != 'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_bytes:0:hybrid:0",
+    "source": "x = b'foo'\nif x is not b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_bytes:0:hybrid:1",
+    "source": "x = b'foo'\nif x is not b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_bytes:0:hybrid:2",
+    "source": "x = b'foo'\nif x != b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_bytes:0:hybrid:3",
+    "source": "x = b'foo'\nif x != b'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_unicode:0:hybrid:0",
+    "source": "x = u'foo'\nif x is not u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_unicode:0:hybrid:1",
+    "source": "x = u'foo'\nif x is not u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_unicode:0:hybrid:2",
+    "source": "x = u'foo'\nif x != u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_unicode:0:hybrid:3",
+    "source": "x = u'foo'\nif x != u'foo':\n    pass\n"
+  },
+  {
+    "id": "test_is_not_int:0:hybrid:0",
+    "source": "x = 10\nif x is not 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_int:0:hybrid:1",
+    "source": "x = 10\nif x is not 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_int:0:hybrid:2",
+    "source": "x = 10\nif x != 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_int:0:hybrid:3",
+    "source": "x = 10\nif x != 10:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_true:0:hybrid:0",
+    "source": "x = True\nif x is not True:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_true:0:hybrid:1",
+    "source": "x = True\nif x is not True:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_true:0:hybrid:2",
+    "source": "x = True\nif x != True:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_true:0:hybrid:3",
+    "source": "x = True\nif x != True:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_false:0:hybrid:0",
+    "source": "x = False\nif x is not False:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_false:0:hybrid:1",
+    "source": "x = False\nif x is not False:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_false:0:hybrid:2",
+    "source": "x = False\nif x != False:\n    pass\n"
+  },
+  {
+    "id": "test_is_not_false:0:hybrid:3",
+    "source": "x = False\nif x != False:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_str:0:hybrid:0",
+    "source": "x = 'foo'\nif 'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_str:0:hybrid:1",
+    "source": "x = 'foo'\nif 'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_str:0:hybrid:2",
+    "source": "x = 'foo'\nif 'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_str:0:hybrid:3",
+    "source": "x = 'foo'\nif 'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_bytes:0:hybrid:0",
+    "source": "x = b'foo'\nif b'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_bytes:0:hybrid:1",
+    "source": "x = b'foo'\nif b'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_bytes:0:hybrid:2",
+    "source": "x = b'foo'\nif b'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_bytes:0:hybrid:3",
+    "source": "x = b'foo'\nif b'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_unicode:0:hybrid:0",
+    "source": "x = u'foo'\nif u'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_unicode:0:hybrid:1",
+    "source": "x = u'foo'\nif u'foo' is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_unicode:0:hybrid:2",
+    "source": "x = u'foo'\nif u'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_unicode:0:hybrid:3",
+    "source": "x = u'foo'\nif u'foo' == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_int:0:hybrid:0",
+    "source": "x = 10\nif 10 is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_int:0:hybrid:1",
+    "source": "x = 10\nif 10 is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_int:0:hybrid:2",
+    "source": "x = 10\nif 10 == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_int:0:hybrid:3",
+    "source": "x = 10\nif 10 == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_true:0:hybrid:0",
+    "source": "x = True\nif True is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_true:0:hybrid:1",
+    "source": "x = True\nif True is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_true:0:hybrid:2",
+    "source": "x = True\nif True == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_true:0:hybrid:3",
+    "source": "x = True\nif True == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_false:0:hybrid:0",
+    "source": "x = False\nif False is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_false:0:hybrid:1",
+    "source": "x = False\nif False is x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_false:0:hybrid:2",
+    "source": "x = False\nif False == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_false:0:hybrid:3",
+    "source": "x = False\nif False == x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_str:0:hybrid:0",
+    "source": "x = 'foo'\nif 'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_str:0:hybrid:1",
+    "source": "x = 'foo'\nif 'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_str:0:hybrid:2",
+    "source": "x = 'foo'\nif 'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_str:0:hybrid:3",
+    "source": "x = 'foo'\nif 'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_bytes:0:hybrid:0",
+    "source": "x = b'foo'\nif b'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_bytes:0:hybrid:1",
+    "source": "x = b'foo'\nif b'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_bytes:0:hybrid:2",
+    "source": "x = b'foo'\nif b'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_bytes:0:hybrid:3",
+    "source": "x = b'foo'\nif b'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_unicode:0:hybrid:0",
+    "source": "x = u'foo'\nif u'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_unicode:0:hybrid:1",
+    "source": "x = u'foo'\nif u'foo' is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_unicode:0:hybrid:2",
+    "source": "x = u'foo'\nif u'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_unicode:0:hybrid:3",
+    "source": "x = u'foo'\nif u'foo' != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_int:0:hybrid:0",
+    "source": "x = 10\nif 10 is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_int:0:hybrid:1",
+    "source": "x = 10\nif 10 is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_int:0:hybrid:2",
+    "source": "x = 10\nif 10 != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_int:0:hybrid:3",
+    "source": "x = 10\nif 10 != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_true:0:hybrid:0",
+    "source": "x = True\nif True is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_true:0:hybrid:1",
+    "source": "x = True\nif True is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_true:0:hybrid:2",
+    "source": "x = True\nif True != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_true:0:hybrid:3",
+    "source": "x = True\nif True != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_false:0:hybrid:0",
+    "source": "x = False\nif False is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_false:0:hybrid:1",
+    "source": "x = False\nif False is not x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_false:0:hybrid:2",
+    "source": "x = False\nif False != x:\n    pass\n"
+  },
+  {
+    "id": "test_left_is_not_false:0:hybrid:3",
+    "source": "x = False\nif False != x:\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant:0:hybrid:0",
+    "source": "x = 5\nif x is ():\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant:0:hybrid:1",
+    "source": "x = 5\nif x is ():\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant:0:hybrid:2",
+    "source": "x = 5\nif x == ():\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant:0:hybrid:3",
+    "source": "x = 5\nif x == ():\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant_containing_constants:0:hybrid:0",
+    "source": "x = 5\nif x is (1, '2', True, (1.5, ())):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant_containing_constants:0:hybrid:1",
+    "source": "x = 5\nif x is (1, '2', True, (1.5, ())):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant_containing_constants:0:hybrid:2",
+    "source": "x = 5\nif x == (1, '2', True, (1.5, ())):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_constant_containing_constants:0:hybrid:3",
+    "source": "x = 5\nif x == (1, '2', True, (1.5, ())):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_containing_variables_ok:0:hybrid:0",
+    "source": "x = 5\nif x is (x,):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_containing_variables_ok:0:hybrid:1",
+    "source": "x = 5\nif x is (x,):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_containing_variables_ok:0:hybrid:2",
+    "source": "x = 5\nif x == (x,):\n    pass\n"
+  },
+  {
+    "id": "test_is_tuple_containing_variables_ok:0:hybrid:3",
+    "source": "x = 5\nif x == (x,):\n    pass\n"
+  }
+]
