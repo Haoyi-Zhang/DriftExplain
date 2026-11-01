@@ -9,6 +9,7 @@ from __future__ import annotations
 import ast
 from dataclasses import dataclass
 import io
+import re
 import tokenize
 import warnings
 
@@ -21,17 +22,54 @@ class Extracted:
     function_lines: dict
 
 
+class _SourceCoordinates:
+    """Translate physical lines and AST UTF-8 byte columns to string offsets.
+
+    Unlike str.splitlines(), Python's physical lines do not end at form feeds
+    or other control characters embedded in whitespace/comments. AST columns
+    count UTF-8 bytes, whereas tokenize columns and string slices count chars.
+    The public bridge still admits ASCII only; keeping these units explicit
+    avoids silently weakening that contract if coordinates are reused.
+    """
+    def __init__(self, source: str):
+        self.lines, self.starts = [], []
+        start = 0
+        for ending in re.finditer(r'\r\n|\r|\n', source):
+            self.starts.append(start)
+            self.lines.append(source[start:ending.start()])
+            start = ending.end()
+        self.starts.append(start)
+        self.lines.append(source[start:])
+
+    def token_offset(self, row: int, column: int) -> int:
+        if not 1 <= row <= len(self.lines) or not 0 <= column <= len(self.lines[row - 1]):
+            raise ValueError('source coordinate outside physical line')
+        return self.starts[row - 1] + column
+
+    def ast_offset(self, row: int, byte_column: int) -> int:
+        if not 1 <= row <= len(self.lines):
+            raise ValueError('AST coordinate outside physical lines')
+        encoded = self.lines[row - 1].encode('utf-8')
+        if not 0 <= byte_column <= len(encoded):
+            raise ValueError('AST byte column outside physical line')
+        try:
+            column = len(encoded[:byte_column].decode('utf-8'))
+        except UnicodeDecodeError as error:
+            raise ValueError('AST byte column splits a UTF-8 character') from error
+        return self.token_offset(row, column)
+
+
 def extract(source: str) -> Extracted:
     if type(source) is not str or not source.isascii() or len(source) > 8192:
         raise ValueError('source must be bounded ASCII text')
     tree = ast.parse(source)
-    tokens = tuple(tokenize.generate_tokens(io.StringIO(source).readline))
+    coordinates = _SourceCoordinates(source)
+    # tokenize.readline expects LF boundaries; retain original offsets for
+    # slicing CRLF/CR source and normalize only this lexical view.
+    lexical_source = source.replace('\r\n', '\n').replace('\r', '\n')
+    tokens = tuple(tokenize.generate_tokens(io.StringIO(lexical_source).readline))
     if not 1 <= len(tree.body) <= 8:
         raise ValueError('expected one to eight functions')
-    lines = source.splitlines(keepends=True)
-    offsets = [0]
-    for line in lines:
-        offsets.append(offsets[-1] + len(line))
     targets, slots, function_lines = [], {}, {}
     for function in tree.body:
         if (not isinstance(function, ast.FunctionDef) or function.decorator_list
@@ -66,7 +104,8 @@ def extract(source: str) -> Extracted:
                                 'constant': 'T' if constant else 'F'},
                         'origins': {'identity': ast.dump(compare.ops[0], include_attributes=False),
                                     'constant': ast.dump(right, include_attributes=False)}})
-        line = offsets[compare.lineno - 1]
+        left_end = coordinates.ast_offset(compare.left.end_lineno, compare.left.end_col_offset)
+        right_start = coordinates.ast_offset(right.lineno, right.col_offset)
         # AST operand offsets do not delimit the operator: the intervening
         # text can include the closing parentheses of the left operand and
         # opening parentheses of the right one. Splicing that whole region
@@ -74,14 +113,15 @@ def extract(source: str) -> Extracted:
         operator = 'is' if type(compare.ops[0]) is ast.Is else '=='
         operators = [token for token in tokens
                      if token.string == operator and token.start[0] == compare.lineno
-                     and token.start[1] >= compare.left.end_col_offset
-                     and token.end[1] <= right.col_offset]
+                     and coordinates.token_offset(*token.start) >= left_end
+                     and coordinates.token_offset(*token.end) <= right_start]
         if len(operators) != 1:
             raise ValueError('comparison operator has no unique lexical span')
         token = operators[0]
-        slots['program|' + anchor + '|identity'] = (line + token.start[1], line + token.end[1])
+        slots['program|' + anchor + '|identity'] = (
+            coordinates.token_offset(*token.start), coordinates.token_offset(*token.end))
         slots['program|' + anchor + '|constant'] = (
-            line + right.col_offset, line + right.end_col_offset)
+            right_start, coordinates.ast_offset(right.end_lineno, right.end_col_offset))
     model = {'targets': sorted(targets, key=lambda item: item['anchor']),
              'normalizer': {'identity_operator': ['identity'], 'constant_operand': ['constant']},
              'rules': [{'id': 'identity-literal', 'family': 'identity-literal',
@@ -112,7 +152,14 @@ def patch_source(before: Extracted, after: Extracted, selected) -> str:
     source = before.source
     for start, end, value in replacements:
         source = source[:start] + value + source[end:]
-    extract(source)  # Every emitted hybrid must remain admitted syntax.
+    # Syntax admission alone cannot detect a valid splice into the wrong span.
+    # Check the actual extraction/finite-patch commuting square on every output.
+    from producer import apply_operations, compute_delta
+    operations = [operation for operation in compute_delta(before.model, after.model)
+                  if operation['id'] in selected]
+    expected = apply_operations(before.model, operations)
+    if extract(source).model != expected:
+        raise ValueError('source extraction and finite patch disagree')
     return source
 
 

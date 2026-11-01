@@ -88,6 +88,8 @@ jobs:
         run: |
           python -B -m unittest discover -s tests -p check_source_pair.py -v
           python -O -B -m unittest discover -s tests -p check_source_pair.py -v
+          python -B -m unittest discover -s tests -p check_source_pair_receipts.py -v
+          python -O -B -m unittest discover -s tests -p check_source_pair_receipts.py -v
           python -B integration/check_source_pairs.py
       - name: Upload raw output and fresh results even when a gate fails
         if: always()
