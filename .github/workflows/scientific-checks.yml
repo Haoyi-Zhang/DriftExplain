@@ -79,6 +79,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python -B -m unittest discover -s tests -p check_source_contexts.py -v
+          python -O -B -m unittest discover -s tests -p check_source_contexts.py -v
           python -B -m unittest discover -s tests -p check_whole_source.py -v
           python -O -B -m unittest discover -s tests -p check_whole_source.py -v
           timeout 120s python -B integration/pyflakes_source_study.py --fetch --wheel-dir "$RUNNER_TEMP/pyflakes-wheels" --output "$RUNNER_TEMP/p025-scientific/source-consumer"

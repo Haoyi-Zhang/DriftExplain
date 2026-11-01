@@ -26,6 +26,14 @@ def export_source(source, release):
            isinstance(n, ast.ImportFrom) and n.module == '__future__' or
            type(n).__name__ in {'NamedExpr','Match','TryStar','TypeAlias'} for n in nodes):
         raise ValueError('annotation/deferred/newer-syntax profile is unsupported')
+    # Explicit direct-AST context contract: these syntactic containers may
+    # cause the released analyzer to reparse strings as additional source.
+    # Refuse all string-bearing calls/subscripts, independent of helper aliases.
+    # No import/name inference is used to guess that an annotation is harmless.
+    if any(isinstance(n, (ast.Call,ast.Subscript)) and any(
+            isinstance(child,ast.Constant) and isinstance(child.value,str)
+            for child in ast.walk(n)) for n in nodes):
+        raise ValueError('string-bearing call/subscript deferred context is unsupported')
     def scalar(n):
         return type(n) is ast.Constant and type(n.value) in (str,bytes,int,float,complex)
     def constant(n):

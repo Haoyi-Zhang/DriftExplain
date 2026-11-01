@@ -42,6 +42,6 @@ class SourcePairTests(unittest.TestCase):
         q=copy.deepcopy(p);q['source_support']=[]
         self.assertFalse(check_pair_certificate(self.old,self.new,'2.1.1','2.2.0',q)[0])
     def test_no_program_execution(self):
-        pair=SourcePair('raise RuntimeError("do not run")\nx is 5\n','raise RuntimeError("do not run")\nx is 6\n','2.2.0','2.2.0')
+        pair=SourcePair('raise RuntimeError\nx is 5\n','raise RuntimeError\nx is 6\n','2.2.0','2.2.0')
         pair.hybrid(pair.blocks)
 if __name__=='__main__':unittest.main()

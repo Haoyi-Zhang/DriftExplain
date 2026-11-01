@@ -13,8 +13,13 @@ import producer
 def run():
     path=ROOT/'results/source-pairs'
     registration=json.loads((path/'registration.json').read_text())
+    source_changes=[]
     for rel,digest in registration['source_bindings'].items():
-        if hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()!=digest:raise ValueError('execution source differs')
+        if hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()!=digest:
+            captured=path/'source-preimage'/rel
+            if not captured.is_file() or hashlib.sha256(captured.read_bytes()).hexdigest()!=digest:
+                raise ValueError('measured source preimage missing or differs')
+            source_changes.append(rel)
     originals=json.loads((ROOT/'results/source_consumer/cases.json').read_text())
     expected=[];excluded=[]
     for old in originals:
@@ -53,5 +58,6 @@ def run():
             targets+=1
     summary=json.loads((path/'summary.json').read_text())
     if (len(rows),len(by),count,targets)!=(summary['admitted_pairs'],summary['source_realizable_hybrids'],summary['exact_support_subset_checks'],summary['source_certificate_targets']):raise ValueError('summary differs')
-    print(json.dumps(dict(status='PASS',source_pairs=len(rows),realizable_hybrids=len(by),native_observations=2*len(by))))
+    print(json.dumps(dict(status='PASS',source_pairs=len(rows),realizable_hybrids=len(by),native_observations=2*len(by),
+        measured_sources_differ_from_current=source_changes,scope='Current data-only reconstruction against preserved measured-source identities; not a fresh analyzer execution')))
 if __name__=='__main__':run()

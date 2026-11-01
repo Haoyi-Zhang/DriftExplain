@@ -13,6 +13,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 import hashlib
 import json
+from itertools import combinations
 from pyflakes_source import export_source
 
 MAX_COMPARISONS=8
@@ -76,6 +77,11 @@ class SourcePair:
         # Coordinate splices must have pairwise disjoint byte spans.
         spans=sorted(self.before.slots.values())
         if any(a[1]>b[0] for a,b in zip(spans,spans[1:])):raise ValueError('overlapping comparison spans')
+        # At most nine source/policy blocks: establish total realizability at
+        # admission, not only when a later caller happens to request a hybrid.
+        keys=tuple(self.blocks)
+        for size in range(len(keys)+1):
+            for selected in combinations(keys,size):self.hybrid(selected)
 
     def hybrid(self,selected):
         selected=tuple(selected)
@@ -85,16 +91,23 @@ class SourcePair:
             if key.startswith('source:'):
                 anchor=key[len('source:'):];a,b=self.before.slots[anchor];c,d=self.after.slots[anchor]
                 replacements.append((a,b,self.after.source[c:d]))
-        source=self.before.source
-        for a,b,value in sorted(replacements,reverse=True):source=source[:a]+value+source[b:]
         release=self.new_release if 'policy:literal' in selected else self.old_release
-        result=extract(source,release)
-        if result.frame!=self.before.frame:raise ValueError('hybrid left the fixed AST frame')
         import producer
         ids={v for key in selected for v in self.blocks[key]}
         expected=producer.apply_operations(self.before.model,[op for op in self.delta if op['id'] in ids])
-        if result.model!=expected:raise ValueError('source realization and model hybrid disagree')
-        return source,release,result
+        # Keep historical valid splices byte-identical. If raw AST spans lose
+        # enclosing parentheses or continuation context, retry wrapped operands.
+        for wrapped in (False,True):
+            source=self.before.source
+            for a,b,value in sorted(replacements,reverse=True):
+                source=source[:a]+('('+value+')' if wrapped else value)+source[b:]
+            try:
+                result=extract(source,release)
+                if result.frame!=self.before.frame:raise ValueError('hybrid left the fixed AST frame')
+                if result.model!=expected:raise ValueError('source realization and model hybrid disagree')
+                return source,release,result
+            except (SyntaxError,ValueError):
+                if wrapped:raise
 
     def support(self,anchor):
         import producer
