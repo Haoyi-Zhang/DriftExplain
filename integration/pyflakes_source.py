@@ -8,6 +8,12 @@ source: this module does not infer correspondence across changed files.
 from __future__ import annotations
 import ast
 import hashlib
+import io
+import re
+import tokenize
+
+
+_TYPE_COMMENT = re.compile(r'#\s*type:')
 
 
 def export_source(source, release):
@@ -15,6 +21,16 @@ def export_source(source, release):
         raise ValueError('source/release contract')
     if len(source.encode('utf-8')) > 65536:
         raise ValueError('source byte bound')
+    # Type comments are absent from the default module AST, but a token-aware
+    # analyzer can reparse them as annotations. Reject the whole unsupported
+    # class (including type: ignore), without matching comment text in strings
+    # or incidental mentions inside ordinary comments.
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(source).readline):
+            if token.type == tokenize.COMMENT and _TYPE_COMMENT.match(token.string):
+                raise ValueError('type-comment deferred context is unsupported')
+    except tokenize.TokenError as error:
+        raise ValueError('source tokenization failed') from error
     tree = ast.parse(source)
     nodes = list(ast.walk(tree))
     if len(nodes) > 10000: raise ValueError('syntax node bound')
