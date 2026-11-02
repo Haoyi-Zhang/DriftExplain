@@ -48,6 +48,41 @@ def cited_keys(text: str) -> list[str]:
     return keys
 
 
+def citation_contexts(text: str) -> dict[str, set[tuple[str, str]]]:
+    """Bind citations to complete source paragraphs, not physical TeX lines.
+
+    Rewrapping a paragraph must not change its claim identity. Preserve its
+    exact wording (apart from whitespace and citation-key placeholders) and
+    section, so altered clauses or attribution still invalidate a stored map.
+    """
+    contexts: dict[str, set[tuple[str, str]]] = {}
+    section = subsection = ""
+    for paragraph in re.split(r"\n\s*\n", text):
+        lines = []
+        for line in paragraph.splitlines():
+            heading = re.fullmatch(r"\s*\\(section|subsection)\{([^}]*)\}\s*", line)
+            if heading:
+                if heading.group(1) == "section":
+                    section, subsection = heading.group(2), ""
+                else:
+                    subsection = heading.group(2)
+                continue
+            if re.fullmatch(r"\s*\\label\{[^}]*\}\s*", line):
+                continue
+            lines.append(line)
+        body = "\n".join(lines)
+        matches = list(re.finditer(r"\\cite\{([^}]*)\}", body))
+        if not matches:
+            continue
+        context = re.sub(r"\\cite\{[^}]*\}", "[citation]", body)
+        context = re.sub(r"\s+", " ", context).strip()
+        location = section + (f" / {subsection}" if subsection else "")
+        for match in matches:
+            for key in match.group(1).split(","):
+                contexts.setdefault(key.strip(), set()).add((location, context))
+    return contexts
+
+
 def bib_dois(text: str) -> dict[str, str]:
     """Extract DOI fields with a small balanced-entry scanner."""
     entries: dict[str, str] = {}
@@ -529,26 +564,7 @@ def main() -> int:
                 and row.get("claim_audit") and row.get("audit_limit") for row in claim_map),
             len(claim_map),
         )
-        current_citation_contexts: dict[str, set[tuple[str, str]]] = {}
-        current_section = ""
-        current_subsection = ""
-        for manuscript_line in tex.splitlines():
-            section_match = re.search(r"\\section\{([^}]*)\}", manuscript_line)
-            if section_match:
-                current_section = section_match.group(1)
-                current_subsection = ""
-            subsection_match = re.search(r"\\subsection\{([^}]*)\}", manuscript_line)
-            if subsection_match:
-                current_subsection = subsection_match.group(1)
-            citation_matches = list(re.finditer(r"\\cite\{([^}]*)\}", manuscript_line))
-            if not citation_matches:
-                continue
-            mapped_context = re.sub(r"\\cite\{[^}]*\}", "[citation]", manuscript_line).strip()
-            mapped_context = re.sub(r"\s+", " ", mapped_context)
-            mapped_section = current_section + (f" / {current_subsection}" if current_subsection else "")
-            for citation_match in citation_matches:
-                for citation_key in citation_match.group(1).split(","):
-                    current_citation_contexts.setdefault(citation_key.strip(), set()).add((mapped_section, mapped_context))
+        current_citation_contexts = citation_contexts(tex)
         context_mismatches = []
         for row in claim_map:
             mapped = (row.get("section", ""), re.sub(r"\s+", " ", row.get("manuscript_claim", "").strip()))

@@ -219,6 +219,16 @@ def main() -> int:
                                     "-s", "tests", "-p", pattern, "-v"], copy_root, suite_env)
             retain(name, executions[name])
 
+        # Pure source-domain and citation-binding regressions, without fetching
+        # or running either released analyzer or reopening a study campaign.
+        for name, pattern in (("source_admission", "check_source_admission.py"),
+                              ("citation_contexts", "check_citation_contexts.py")):
+            for suffix, flags in (("", []), ("_optimized", ["-O"])):
+                executions[name + suffix] = run(
+                    [sys.executable, "-X", "utf8", "-B", *flags, "-m", "unittest", "discover",
+                     "-s", "tests", "-p", pattern, "-v"], copy_root, suite_env)
+                retain(name + suffix, executions[name + suffix])
+
         # New query-execution checks are explicit mandatory groups, preserving
         # the archived base-suite inventory without dropping either mode.
         for name, flags in (("query_execution", []),

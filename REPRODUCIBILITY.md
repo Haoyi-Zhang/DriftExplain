@@ -107,6 +107,42 @@ test split.  The checks address specification and fixture bias through exhaustiv
 small domains, generated cases, representation metamorphisms, and failure
 controls.
 
+## Bounded source-admission and citation-binding checks
+
+The whole-module source frontend rejects type parameters on classes, functions
+and async functions, including comparisons in generic bounds. Host parser
+support for this newer syntax does not mean that the pinned analyzer interface
+supports it. `check_source_admission.py` checks refusal before finite production
+or reception, plus ordinary-scope positive controls, without running an analyzer
+or any source program. Type-parameter-specific methods require Python 3.12+;
+older hosts do not parse that grammar and report those methods as skipped.
+
+The citation map binds complete current manuscript paragraphs: whitespace and
+citation keys are normalized, but clauses, attribution and section identity
+remain checked. Refreshing these context fields does not expand the original
+source-reading depth recorded in the other columns. The map-to-manuscript test
+requires the full project; it is explicitly skipped in a standalone artifact.
+The one-command verifier gates both pure regression groups in normal and
+optimized Python, but its standalone copy cannot certify the paper-aware map.
+
+On a disposable full project, from `artifact/`, run:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python -X utf8 -B -m unittest discover -s tests -p check_source_admission.py -v
+PYTHONDONTWRITEBYTECODE=1 python -X utf8 -B -O -m unittest discover -s tests -p check_source_admission.py -v
+PYTHONDONTWRITEBYTECODE=1 python -X utf8 -B -m unittest discover -s tests -p check_citation_contexts.py -v
+PYTHONDONTWRITEBYTECODE=1 python -X utf8 -B -O -m unittest discover -s tests -p check_citation_contexts.py -v
+PYTHONDONTWRITEBYTECODE=1 python -X utf8 -B audit_static.py --root .. --output /fresh/external/project-audit.json
+```
+
+In PowerShell, set `$env:PYTHONDONTWRITEBYTECODE = '1'` first and omit the
+environment-variable prefix on each command. Existing captured analyzer output,
+registration hashes and measured source preimages are not rewritten by these
+checks. The original exporter bytes for both source captures remain under
+`results/source-pairs/source-preimage/integration/pyflakes_source.py`; the
+captured `source_pair.py` is retained alongside it. A current source repair is
+not a fresh native execution or a new study result.
+
 ## Preserved but non-reproducible campaign surface
 
 The historical timing/scaling campaign is intentionally not a positive

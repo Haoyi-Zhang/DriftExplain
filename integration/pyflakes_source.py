@@ -20,11 +20,17 @@ def export_source(source, release):
     if len(nodes) > 10000: raise ValueError('syntax node bound')
     # These releases can parse extra annotations as separate source. Such
     # evidence is not a direct comparison node of this source AST.
+    # The host parser also accepts type parameters added after these releases.
+    # Their visitors do not implement that interface; even a comparison inside
+    # a generic bound must not be exported as a released diagnostic observation.
     if any(isinstance(n, ast.AnnAssign) or
            isinstance(n, (ast.FunctionDef,ast.AsyncFunctionDef)) and n.returns is not None or
+           isinstance(n, (ast.ClassDef,ast.FunctionDef,ast.AsyncFunctionDef)) and
+           bool(getattr(n, 'type_params', ())) or
            isinstance(n, ast.arg) and n.annotation is not None or
            isinstance(n, ast.ImportFrom) and n.module == '__future__' or
-           type(n).__name__ in {'NamedExpr','Match','TryStar','TypeAlias'} for n in nodes):
+           type(n).__name__ in {'NamedExpr','Match','TryStar','TypeAlias',
+                               'TypeVar','ParamSpec','TypeVarTuple'} for n in nodes):
         raise ValueError('annotation/deferred/newer-syntax profile is unsupported')
     # Explicit direct-AST context contract: these syntactic containers may
     # cause the released analyzer to reparse strings as additional source.
