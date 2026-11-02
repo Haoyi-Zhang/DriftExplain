@@ -15,7 +15,9 @@ texts. The enclosing AST must agree after comparison expressions are replaced
 by holes. AST paths identify the holes despite line/spacing changes. Whole
 single-edge comparison expressions are source atoms; their coupled scalar,
 tuple and operator observations cannot be independently spliced. Chains,
-nested comparisons, overlapping spans and other structural changes reject.
+nested comparisons, overlapping spans and changes to the enclosing AST reject.
+This includes renames outside comparison holes; operand-name changes inside an
+admitted whole-comparison block may be accepted after re-extraction checks.
 Every emitted hybrid is parsed and re-extracted, and the receiver reconstructs
 both source identities and the disjoint block partition before checking support.
 

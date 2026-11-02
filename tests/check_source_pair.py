@@ -41,6 +41,15 @@ class SourcePairTests(unittest.TestCase):
         self.assertFalse(check_pair_certificate(self.old,self.new+'# bytes\n','2.1.1','2.2.0',p)[0])
         q=copy.deepcopy(p);q['source_support']=[]
         self.assertFalse(check_pair_certificate(self.old,self.new,'2.1.1','2.2.0',q)[0])
+    def test_operand_rename_inside_whole_comparison_hole_is_admitted(self):
+        old='def f(x, y):\n    return x is 1\n'
+        new='def f(x, y):\n    return y is 1\n'
+        pair=SourcePair(old,new,'2.1.1','2.2.0')
+        anchor=pair.after.model['targets'][0]['anchor']
+        certificate=make_pair_certificate(old,new,'2.1.1','2.2.0',anchor)
+        self.assertTrue(check_pair_certificate(old,new,'2.1.1','2.2.0',certificate)[0])
+        with self.assertRaises(ValueError):
+            SourcePair(old,new.replace('def f','def g'),'2.1.1','2.2.0')
     def test_no_program_execution(self):
         pair=SourcePair('raise RuntimeError\nx is 5\n','raise RuntimeError\nx is 6\n','2.2.0','2.2.0')
         pair.hybrid(pair.blocks)
