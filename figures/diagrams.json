@@ -1,0 +1,74 @@
+{
+  "project": "DriftExplain_TSE",
+  "figures": [
+    {
+      "asset": "architecture",
+      "media": [
+        508.0,
+        157.0
+      ],
+      "width": 493.5,
+      "trim": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        "artifact/figures/illustrations/architecture.pdf",
+        "artifact/figures/architecture.pdf"
+      ]
+    },
+    {
+      "asset": "final-read-support",
+      "media": [
+        252.0,
+        95.0
+      ],
+      "width": 251.1,
+      "trim": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        "paper/figures/final-read-support.pdf"
+      ]
+    },
+    {
+      "asset": "interacting-delta",
+      "media": [
+        252.0,
+        156.0
+      ],
+      "width": 251.1,
+      "trim": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        "paper/figures/interacting-delta.pdf"
+      ]
+    },
+    {
+      "asset": "two-minima",
+      "media": [
+        250.0,
+        97.0
+      ],
+      "width": 251.1,
+      "trim": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "targets": [
+        "artifact/figures/two-minima.pdf"
+      ]
+    }
+  ]
+}
