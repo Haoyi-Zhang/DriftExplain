@@ -33,9 +33,9 @@ def literal_evidence():
     assert all([w['anchor'] for w in h['compiler_warnings']]==['focus'] for h in case['hybrids'])
     assert focus['minimum_value_support']==0 and focus['certificate']['witness']==[edit['id']]
     d=Diagram(252,107)
-    d.mark('code',42,79,22,S);d.mark('code',210,79,22,T)
-    d.txt(42,57,'x is 5',9.4);d.txt(210,57,'x is 6',9.4)
-    d.wire((57,79),(195,79),c=A)
+    d.txt(42,79,r'$x=5$',12,color=S)
+    d.txt(210,79,r'$x=6$',12,color=T)
+    d.wire((63,79),(189,79),c=A)
     d.txt(126,93,'Constant edit',8.9,color=A)
     d.txt(126,62,'Same warning',9.0)
     d.wire((126,53),(126,38),(65,38),(65,29),c=S)
