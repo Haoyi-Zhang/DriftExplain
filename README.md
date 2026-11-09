@@ -375,11 +375,15 @@ evaluations, exceeding the frozen 800,000-obligation cap.  The campaign remains
 for a positive performance claim.  Current unit and finite-check runs are
 post-disposition artifact verification and do not reset that accounting.
 
-## Manuscript architecture
+## Manuscript figures
 
-The support architecture is drawn directly in Python as a font-embedded vector
-PDF. Its arrows show the declared endpoint and certificate data flow,
-not measured traffic. With Python 3.9+ and Matplotlib, run from this directory:
+The architecture shows the endpoint and certificate paths through the
+independent checker. The literal-edit figure uses the retained source-bridge
+case; the query plot compares identification and verification in four cases
+from the retained query-count table. The plot counts hybrid replays, not elapsed
+time. Use Python 3.9+, Matplotlib
+and the manuscript's URW Times fonts (discoverable through `kpsewhich` or
+`FIGURE_TEX_FONT_DIR`), and run from this directory:
 
 ```sh
 python -B figures/draw_schematics.py --output figures
