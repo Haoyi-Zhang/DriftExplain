@@ -48,24 +48,19 @@ preferred-citation:
     email: huaijin003@e.ntu.edu.sg
     affiliation: Nanyang Technological University
     orcid: https://orcid.org/0009-0009-2482-2344
-  - family-names: Kong
-    given-names: Fanqi
-    orcid: https://orcid.org/0009-0000-4831-6387
-    email: fanqikong@st.gxu.edu.cn
-    affiliation: Guangxi University
-  - family-names: Yu
-    given-names: Jiongchi
-    orcid: https://orcid.org/0000-0002-2888-4499
-    email: jiongchiyu@acm.org
-    affiliation: Nanyang Technological University
-  - family-names: Sun
-    given-names: Yuqiang
-    orcid: https://orcid.org/0000-0003-4340-3371
-    email: yuqiang.sun@ntu.edu.sg
-    affiliation: Nanyang Technological University
-  - family-names: Zhao
-    given-names: Ziming
-    orcid: https://orcid.org/0000-0003-1455-4330
-    email: zhaoziming@zju.edu.cn
-    affiliation: Zhejiang University
+  - family-names: Tang
+    given-names: Xunzhu
+    email: realdanieltang@gmail.com
+    affiliation: University of Luxembourg
+    orcid: https://orcid.org/0000-0002-6377-0884
+  - family-names: Kim
+    given-names: Kisub
+    email: kisub.kim@dgist.ac.kr
+    affiliation: Daegu Gyeongbuk Institute of Science and Technology
+    orcid: https://orcid.org/0000-0002-4462-6916
+  - family-names: Ezzini
+    given-names: Saad
+    email: saad.ezzini@kfupm.edu.sa
+    affiliation: King Fahd University of Petroleum and Minerals
+    orcid: https://orcid.org/0000-0001-7657-4738
 repository-code: https://github.com/Haoyi-Zhang/DriftExplain
