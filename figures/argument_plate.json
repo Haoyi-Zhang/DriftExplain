@@ -1,0 +1,11 @@
+{
+  "venue": "tpds",
+  "figures": [
+    {
+      "name": "framed-read-closure"
+    },
+    {
+      "name": "incremental-impact"
+    }
+  ]
+}
