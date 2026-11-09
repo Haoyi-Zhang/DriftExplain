@@ -15,6 +15,7 @@ authors:
   orcid: https://orcid.org/0009-0009-2482-2344
 - family-names: Kong
   given-names: Fanqi
+  orcid: https://orcid.org/0009-0000-4831-6387
   email: fanqikong@st.gxu.edu.cn
   affiliation: Guangxi University
 - family-names: Yu
@@ -29,6 +30,7 @@ authors:
   affiliation: Nanyang Technological University
 - family-names: Zhao
   given-names: Ziming
+  orcid: https://orcid.org/0000-0003-1455-4330
   email: zhaoziming@zju.edu.cn
   affiliation: Zhejiang University
 license: MIT
@@ -48,6 +50,7 @@ preferred-citation:
     orcid: https://orcid.org/0009-0009-2482-2344
   - family-names: Kong
     given-names: Fanqi
+    orcid: https://orcid.org/0009-0000-4831-6387
     email: fanqikong@st.gxu.edu.cn
     affiliation: Guangxi University
   - family-names: Yu
@@ -62,6 +65,7 @@ preferred-citation:
     affiliation: Nanyang Technological University
   - family-names: Zhao
     given-names: Ziming
+    orcid: https://orcid.org/0000-0003-1455-4330
     email: zhaoziming@zju.edu.cn
     affiliation: Zhejiang University
 repository-code: https://github.com/Haoyi-Zhang/DriftExplain
