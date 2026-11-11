@@ -8,7 +8,9 @@ def interaction_support():
     d.wire((136,43),(154,28),c=S)
     d.wire((188,75),(216,55),c=S)
     d.wire((188,28),(216,43),c=S)
-    d.txt(66,59,r'drop $\delta_1$',8.8,color=T)
+    d.txt(66,61,r'Drop $\delta_1$',8.8,color=T)
+    d.txt(122,76,r'Drop $\delta_3$',8.4,color=S)
+    d.txt(122,14,r'Drop $\delta_2$',8.4,color=S)
     nodes=((23,49,r'$\Delta$','U',True),
            (115,49,r'$\{\delta_2,\delta_3\}$','U',True),
            (172,78,r'$\{\delta_2\}$','T',False),
@@ -17,7 +19,7 @@ def interaction_support():
     for x,y,subset,value,exact in nodes:
         c=T if exact else S
         d.txt(x,y,subset,10.0,color=c)
-        d.txt(x-3,y-13,value,9.0,color=c)
+        d.txt(x-5,y-13,value,9.0,color=c)
         d.mark('check' if exact else 'reject',x+7,y-13,8,c if exact else A)
     return d
 

@@ -6,16 +6,6 @@ a certificate producer, an independently implemented replay checker, bounded
 model checks, generated differential checks, and the evidence needed to audit
 the paper's finite claims.
 
-## Rebuilding the explanatory diagrams
-
-Create an output directory, then run `python -B figures/rebuild_diagrams.py --output /path/to/figures`
-from the artifact root. This regenerates the explanatory vector PDFs without
-running an experiment or requiring the manuscript. In the collaboration bundle,
-the same command without `--output` updates the diagram targets consumed by the
-sibling `paper/` directory. Other plots have their own generators and inputs.
-The diagrams use the IEEE manuscript's Nimbus Roman AFM/PFB faces, found
-through TeX or `NIMBUS_ROMAN_AFM_DIR` and `NIMBUS_ROMAN_PFB_DIR`.
-
 ## Scientific scope
 
 ### Realizable source-pair blocks
