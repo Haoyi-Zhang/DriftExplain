@@ -28,17 +28,18 @@ def replay_counts(out):
     assert identify=={65} and verify==[1,2,33,64]
     fig,ax=plot(252,121,left=54,right=15,bottom=30,top=24)
     y=list(range(len(data)))
-    # Keep both x-values exact. Interrupt the reference stroke only around
-    # the neighboring 64-replay marker so the two strokes cannot touch.
     core,=identify
-    near=y[verify.index(core-1)]
-    ax.vlines([core,core],[-.45,near+.18],[near-.18,3.45],colors=AMBER,
-              linestyles='--',linewidths=.8,label=f'Identify core ({core})')
-    ax.scatter(verify,y,marker='o',s=16,facecolors='white',edgecolors=BLUE,
+    # The positions show equal-valued quantities on separate labeled series;
+    # display offsets separate marks, not measured replay counts.
+    for row,value in zip(y,verify):
+        ax.plot([value,core],[row-.13,row+.13],color=LIGHT,lw=.7,zorder=1)
+    ax.scatter([core]*len(y),[row+.13 for row in y],marker='D',s=15,
+               c=AMBER,label=f'Identify and replay ({core})',zorder=4)
+    ax.scatter(verify,[row-.13 for row in y],marker='o',s=16,facecolors='white',edgecolors=BLUE,
                linewidths=.8,label='Verify candidate',zorder=4)
     for value,row in zip(verify,y):
         dx = -6 if value == 64 else 6
-        ax.annotate(str(value),(value,row),xytext=(dx,0),textcoords='offset points',
+        ax.annotate(str(value),(value,row-.13),xytext=(dx,0),textcoords='offset points',
                     ha='right' if dx<0 else 'left',va='center',fontsize=8.8,color=BLUE)
     ax.set(xlim=(-3,72),ylim=(3.45,-.45),xticks=[0,16,32,48,64],
            yticks=y,yticklabels=[f"{r['support_atoms']} atom" + ('s' if r['support_atoms'] != '1' else '') for r in data],
@@ -47,7 +48,7 @@ def replay_counts(out):
     ax.spines['left'].set_visible(False)
     ax.tick_params(axis='y',length=0,pad=4)
     ax.legend(loc='lower left',bbox_to_anchor=(-.21,1.02),ncol=2,fontsize=8.6,
-              handlelength=1.55,handletextpad=.5,columnspacing=.9)
+              handlelength=1.15,handletextpad=.4,columnspacing=.65)
     grid(ax,'x')
     save(fig,out,'replay-counts')
 

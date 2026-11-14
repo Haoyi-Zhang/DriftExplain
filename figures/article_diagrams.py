@@ -2,37 +2,39 @@
 import json
 from pathlib import Path
 from diagram_ink import Diagram,S,T,A,K,G,F,L,P,O
+from matplotlib.patches import FancyBboxPatch
 
 
 def architecture():
-    d=Diagram(509,124)
-    for y,label,dy in [(91,'Old',20),(41,'New',-20)]:
-        d.mark('code',25,y,22,S)
-        d.txt(25,y+dy,label,9.8)
-        d.wire((37,y),(58,y),(58,66),c=S,arrow=False)
-    d.dotmark(58,66,2,c=S,fill=S)
-    d.wire((61,66),(88,66),c=S,arrow=False)
-    d.dotmark(88,66,2,c=S,fill=S)
-    for y,k,label,dy,c in [(91,'graph','Producer',19,S),(41,'array','Checker rebuild',-20,T)]:
-        d.wire((90,66),(102,y),(124,y),c=c)
-        d.mark(k,141,y,24,c)
-        d.txt(141,y+dy,label,10.0,bold=True)
-    d.wire((157,91),(219,91),c=S)
-    d.mark('cert',236,91,23,S)
-    d.txt(236,110,'Certificate',9.6)
-    d.wire((247,91),(278,91),(278,51),c=S,dash=True)
-    d.wire((157,41),(268,41),c=T)
-    d.diamond(278,41,7,T)
-    d.txt(238,22,'Claims match?',9.4)
-    d.wire((278,32),(278,9),(312,9),c=A,dash=True)
-    d.mark('reject',322,9,13,A)
-    d.txt(332,9,'Reject',9.3,ha='left',color=A)
-    d.wire((287,41),(329,41),c=T,arrow=False)
-    d.dotmark(329,41,2,c=T,fill=T)
-    for y,k,lab in [(83,'branch','Identify core'),(55,'trace','Verify candidate'),(27,'lens','Check projection')]:
-        d.wire((331,41),(358,y),(379,y),c=T)
-        d.mark(k,392,y,18,T)
-        d.txt(406,y,lab,9.6,ha='left')
+    d=Diagram(509,132)
+    d.tag(13,117,'One changed operand')
+    d.tag(172,117,'Two observation contracts')
+    d.tag(380,117,'Witness check')
+    for y,n,c in ((87,5,S),(52,6,A)):
+        d.mark('code',25,y,17,c)
+        d.txt(46,y,f'return x is {n}',9.8,ha='left',color=c)
+        d.wire((115,y),(145,y),c=c)
+        d.dotmark(155,y,2,c=c,fill=c)
+        d.wire((158,y),(175,y),c=c,arrow=False)
+        d.mark('trace',185,y,13,G)
+        d.txt(197,y,'Warning',9.0,ha='left')
+        d.dotmark(250,y,7,c=c)
+        d.node_label(250,y,str(n),10.3,color=c)
+    d.wire((237,84),(233,84),(233,55),(237,55),c=G,arrow=False)
+    d.txt(211,25,'Same warning',9.1,color=G)
+    d.wire((249,78),(249,61),c=A,dash=True)
+    d.wire((260,69),(293,69),c=A)
+    d.dotmark(306,69,7,c=A)
+    d.node_label(306,69,r'$\delta$',10,color=A)
+    d.wire((316,69),(343,69),(343,82),(364,82),c=T)
+    for y,label,c in ((82,r'Recovered $\{\delta\}$',T),(52,r'Submitted $W$',G)):
+        d.ax.add_patch(FancyBboxPatch((366,y-8),92,16,boxstyle='round,pad=0,rounding_size=3',
+                      linewidth=.72,edgecolor=c,facecolor='white',zorder=3))
+        d.node_label(412,y,label,9.4,color=c)
+        d.wire((461,y),(479,67),c=c,arrow=False)
+    d.dotmark(487,67,7,c=T)
+    d.node_label(487,67,'=',9.5,color=T)
+    d.txt(477,32,'Must agree',8.7,color=T)
     return d
 
 
@@ -47,56 +49,77 @@ def literal_evidence():
     assert all([w['anchor'] for w in h['compiler_warnings']]==['focus'] for h in case['hybrids'])
     assert focus['minimum_value_support']==0 and focus['certificate']['witness']==[edit['id']]
     d=Diagram(252,107)
-    for x,t,c in [(42,r'$x=5$',S),(210,r'$x=6$',T)]:
-        d.mark('code',x,80,19,c)
-        d.txt(x,58,t,10.4,color=c)
-    d.wire((58,80),(195,80),c=A)
-    d.txt(126,94,'Constant edit',9.1,color=A)
-    d.mark('trace',126,60,15,S)
-    d.txt(126,43,'Same warning',8.9)
-    for x,text,c in [(62,'Value only: 0 atoms',S),(190,'Complete: 1 atom',T)]:
-        d.wire((126,35),(126,27),(x,27),(x,20),c=c)
-        d.txt(x,9,text,9,color=c)
+    d.txt(12,94,'Edit set',8.9,ha='left',bold=True)
+    d.txt(102,94,'Line 2',8.9,bold=True)
+    d.txt(187,94,'Matches target',8.9,bold=True)
+    for x,label in [(165,'Warning'),(221,'Literal')]:
+        d.txt(x,77,label,8.6)
+    for y,lab,lit,tone in [(57,r'$\varnothing$','5',S),(29,r'$\{\delta\}$','6',T)]:
+        d.txt(31,y,lab,9.7,color=tone)
+        d.mark('code',77,y,11,tone)
+        d.txt(111,y,'x is '+lit,9.0,color=tone)
+        d.mark('check' if lit=='6' else 'reject',221,y,11,T if lit=='6' else A)
+    d.wire((147,60),(153,60),(153,26),(147,26),c=G,arrow=False)
+    d.mark('check',165,43,11,T)
+    d.txt(9,9,r'$\delta$: literal edit',8.5,ha='left')
+    d.txt(242,9,'Target operand: 6',8.5,ha='right',color=G)
     return d
 
 
 def framed_read_closure():
-    d=Diagram(252,55)
-    d.mark('keyed',20,32,16,S)
-    d.txt(29,9,'Decoded prefix',8.65)
-    d.wire((31,32),(63,32),c=S)
-    d.dotmark(75,32,8,c=S)
-    d.node_label(75,32,r'$R_i$',9.3,color=S)
-    d.wire((86,32),(103,32),c=S)
-    d.node_label(123,32,r'$\bigcup_i\,R_i$',10,color=T)
-    d.wire((144,32),(156,32),c=T)
-    for x,fill,c,bit in [(164,'white',F,0),(185,P,T,1),(206,'white',F,0),(227,P,T,1)]:
-        d.block(x,27,16,10,c,fill)
-        if bit:
-            d.wire((x+3,34),(x+13,34),c=T,arrow=False,lw=.8)
-            d.wire((x+3,30),(x+11,30),c=T,arrow=False,lw=.8)
-    d.txt(201,47,'Changed blocks',8.7,color=G)
-    d.txt(202,9,'Keep touching edits',8.9,color=T)
+    d=Diagram(252,62)
+    d.txt(6,50,'Reads',8.4,ha='left',bold=True)
+    d.txt(6,25,'Edits',8.4,ha='left',bold=True)
+    d.txt(62,50,'Unread',7.8,color=G)
+    for x,key,edit,c in ((62,'a',1,G),(97,'b',2,T),(128,'c',3,T)):
+        if key!='a':
+            d.dotmark(x,50,6,c=c,fill=P)
+            d.node_label(x,50,rf'${key}$',9.1,color=c)
+            d.wire((x,42),(x,33),c=T,dash=True)
+        d.block(x-10,18,20,14,c,'white')
+        d.node_label(x,25,rf'$\delta_{edit}$',9.0,color=c)
+    d.wire((105,50),(120,50),c=S)
+    d.wire((97,17),(97,7),(149,7),(149,25),(156,25),c=T)
+    d.wire((128,17),(128,7),c=T,arrow=False)
+    d.dotmark(128,7,1.3,c=T,fill=T)
+    d.txt(174,39,'Support',8.4,bold=True)
+    d.block(157,18,35,14,T,P)
+    d.node_label(174.5,25,r'$\{\delta_2,\delta_3\}$',8.6,color=T)
+    d.wire((193,25),(198,25),c=T)
+    d.diamond(204,25,5,c=G)
+    d.txt(204,51,r'$W$',9.1,color=G)
+    d.wire((204,43),(204,31),c=G)
+    d.wire((210,26),(218,34),c=T)
+    d.wire((210,24),(218,14),c=A,dash=True)
+    d.txt(250,36,'Accept',8.4,ha='right',color=T)
+    d.txt(250,12,'Reject',8.4,ha='right',color=A)
+    d.txt(216,42,r'$=$',8.5,color=T)
+    d.txt(208,9,r'$\ne$',8.5,color=A)
     return d
 
 
 def incremental_impact():
-    d=Diagram(252,55)
-    for y,label,c in [(43,'Old deps.',S),(12,'New deps.',T)]:
-        d.mark('trace',12,y,13,c)
-        d.txt(23,y,label,8.7,ha='left',color=c)
-        d.wire((71,y),(83,y),(99,28),c=c,arrow=False)
-    d.dotmark(99,28,2,c=T,fill=T)
-    d.wire((103,28),(122,28),c=T)
-    d.mark('patch',131,47,13,S)
-    d.node_label(146,47,r'$\Delta$',9.6,color=S)
-    d.wire((131,39),(131,36),c=S)
-    d.diamond(131,28,6,T)
-    d.txt(131,12,'Affected?',8.8)
-    for y,k,label,c in [(43,'keyed','Recompute',T),(12,'store','Reuse old',G)]:
-        d.wire((139,28),(157,28),(174,y),(184,y),c=c,dash=c==G)
-        d.mark(k,195,y,14,c)
-        d.txt(205,y,label,8.8,ha='left')
+    d=Diagram(252,101)
+    d.tag(12,90,r'Reads changed key $k$')
+    d.tag(137,90,'Cache action')
+    d.txt(53,73,'Old',8.8)
+    d.txt(88,73,'New',8.8)
+    for y,n,old,new in ((55,'u',True,False),(37,'v',False,True),(19,'w',False,False)):
+        d.dotmark(21,y,6.4,c=S if old or new else G)
+        d.node_label(21,y,n,9.4)
+        for x,active in ((53,old),(88,new)):
+            if active:
+                d.mark('check',x,y,10,S)
+            else:
+                d.txt(x,y,r'$-$',8.7,color=G)
+    d.wire((103,55),(113,55),(124,46),c=T,arrow=False)
+    d.wire((103,37),(113,37),(124,46),c=T,arrow=False)
+    d.dotmark(124,46,1.65,c=T,fill=T)
+    d.wire((127,46),(138,46),c=T)
+    d.txt(146,46,'Recompute at new endpoint',8.5,ha='left',color=T)
+    d.wire((103,19),(138,19),c=G,dash=True)
+    d.txt(146,22,'Reuse if cache is correct',8.5,ha='left',color=G)
+    d.txt(146,10,'and no other key affects it',8.5,ha='left',color=G)
     return d
 
 

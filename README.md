@@ -1,7 +1,7 @@
 # Finite evidence support for evolving rule analyzers
 
-This artifact accompanies **When Complete Evidence Makes Minimum Drift
-Explanations Structural**.  It implements the finite three-valued rule model,
+This artifact accompanies **Minimum Drift Explanations from Complete Structural
+Evidence**. It implements the finite three-valued rule model,
 a certificate producer, an independently implemented replay checker, bounded
 model checks, generated differential checks, and the evidence needed to audit
 the paper's finite claims.

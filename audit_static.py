@@ -601,10 +601,11 @@ def main() -> int:
             and ("specification or fixture bias" in novelty_text or "specification and fixture bias" in novelty_text),
             "non-ML overfitting analogue stated",
         )
-        bounded_bridge_scope = all(term in tex for term in (
+        normalized_tex = " ".join(tex.split())
+        bounded_bridge_scope = all(term in normalized_tex for term in (
             "The finite evaluator has no general control-flow or source semantics.",
             "The Python comparison bridge checks one bounded source interface",
-            "These are not implemented for a Solidity-like language.",
+            "These are not implemented for a Solidity-like language",
         ))
         check("source_level_nonclaim", bounded_bridge_scope,
               "Bounded Python comparison bridge distinguished from general extraction and Solidity-like semantics")

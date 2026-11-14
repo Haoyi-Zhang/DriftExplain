@@ -46,7 +46,7 @@
     {
       "detail": {
         "errors": [],
-        "files": 24
+        "files": 58
       },
       "id": "python_ast",
       "status": "PASS"
@@ -478,7 +478,7 @@
     {
       "detail": {
         "errors": [],
-        "parsed": 55
+        "parsed": 76
       },
       "id": "json_parse",
       "status": "PASS"
@@ -640,7 +640,7 @@
       "status": "PASS"
     },
     {
-      "detail": 23,
+      "detail": 24,
       "id": "claim_ledger_unique",
       "status": "PASS"
     },
@@ -697,7 +697,7 @@
       "status": "PASS"
     },
     {
-      "detail": 180,
+      "detail": 161,
       "id": "abstract_word_count",
       "status": "PASS"
     },
@@ -756,7 +756,7 @@
       "status": "PASS"
     },
     {
-      "detail": 67,
+      "detail": 66,
       "id": "reference_identifier_uniqueness",
       "status": "PASS"
     },
@@ -766,7 +766,26 @@
       "status": "PASS"
     },
     {
-      "detail": 67,
+      "detail": {
+        "cited_keys": 67,
+        "resources": 67
+      },
+      "id": "bibliography_resource_count",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "extra": [],
+        "missing": []
+      },
+      "id": "bibliography_resource_title_alignment",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "resources": 66,
+        "scholarly_keys": 66
+      },
       "id": "scholarly_resource_count",
       "status": "PASS"
     },
@@ -779,19 +798,36 @@
       "status": "PASS"
     },
     {
+      "detail": {
+        "official_keys": [
+          "PyflakesUpgrade"
+        ],
+        "resources": 1
+      },
+      "id": "official_software_resource_count",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "extra": [],
+        "missing": []
+      },
+      "id": "official_software_resource_title_alignment",
+      "status": "PASS"
+    },
+    {
+      "detail": [],
+      "id": "official_software_source_identity",
+      "status": "PASS"
+    },
+    {
       "detail": [
         "Darwiche2020",
         "Ignatiev2019",
         "Janota2016",
-        "MarquesSilva2013",
-        "MarquesSilva2017"
+        "MarquesSilva2013"
       ],
       "id": "closest_prior_art_present",
-      "status": "PASS"
-    },
-    {
-      "detail": "generic minimal-set and deletion machinery explicitly credited",
-      "id": "generic_novelty_disclaimed",
       "status": "PASS"
     },
     {
@@ -800,7 +836,7 @@
       "status": "PASS"
     },
     {
-      "detail": "source route excluded",
+      "detail": "Bounded Python comparison bridge distinguished from general extraction and Solidity-like semantics",
       "id": "source_level_nonclaim",
       "status": "PASS"
     },
@@ -840,7 +876,7 @@
       "status": "PASS"
     },
     {
-      "detail": 46,
+      "detail": 54,
       "id": "latex_labels_unique",
       "status": "PASS"
     },
@@ -878,9 +914,9 @@
   "mode": "project",
   "scope": "deterministic structural audit; no analyzer, checker, experiment, or test module is imported or executed",
   "summary": {
-    "checks": 88,
+    "checks": 92,
     "failed": 0,
-    "passed": 88,
+    "passed": 92,
     "status": "PASS"
   }
 }
